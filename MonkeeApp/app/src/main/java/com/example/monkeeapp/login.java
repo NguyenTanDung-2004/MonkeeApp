@@ -1,11 +1,8 @@
 package com.example.monkeeapp;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,13 +15,11 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.monkeeapp.Dung.Event_for_login.event_for_login;
-import com.example.monkeeapp.Dung.User.user;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -71,26 +66,13 @@ public class login extends AppCompatActivity {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.client_id))
                 .requestEmail().build();
-        googlesigninClient = GoogleSignIn.getClient(this, gso);
-        Context context = this;
-        button_continue.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        int background = R.drawable.dung_shape_button_google_touch;
-                        button_continue.setBackground(ContextCompat.getDrawable(context, background));
-                        TextView obj = findViewById(R.id.text_continue);
-                        obj.setText("Đang xử lí...");
-                        auth.signOut();
-                        googleSignin();
-                        break;
-                    case MotionEvent.ACTION_UP:
-                    case MotionEvent.ACTION_CANCEL:
+        googlesigninClient = GoogleSignIn.getClient(this,gso);
+        button_continue.setOnClickListener(new View.OnClickListener() {
 
-                        break;
-                }
-                return true; // Trả về true để xử lý sự kiện chạm hoàn chỉnh
+            @Override
+            public void onClick(View v) {
+                auth.signOut();
+                googleSignin();
             }
         });
 //        if (auth.getCurrentUser() != null){
@@ -122,10 +104,7 @@ public class login extends AppCompatActivity {
                 firebaseAuth(account.getIdToken());
             }
             catch(Exception e){
-                Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-                user.email = e.toString();
-                Intent intent = new Intent(login.this, Home.class);
-                startActivity(intent);
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -147,8 +126,6 @@ public class login extends AppCompatActivity {
                             com.example.monkeeapp.Dung.User.user.email = user.getEmail();
                             Intent intent = new Intent(login.this, Home.class);
                             startActivity(intent);
-                            TextView obj = findViewById(R.id.text_continue);
-                            obj.setText("Đăng nhập bằng Google");
                         }
                         else{
                             Toast.makeText(login.this, "something went wrong", Toast.LENGTH_SHORT).show();

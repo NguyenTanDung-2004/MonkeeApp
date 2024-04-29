@@ -162,14 +162,13 @@
             android:background="@drawable/dung_shape_button_google">
 
             <com.example.monkeeapp.Dung.custom_textview.Baloo2_textView
-                android:id="@+id/text_continue"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="11px"
+                android:layout_marginRight="80px"
                 android:text="Đăng nhập bằng Google"
                 android:textColor="@color/black"
-                android:layout_alignParentRight="true"
                 android:textSize="35px"></com.example.monkeeapp.Dung.custom_textview.Baloo2_textView>
 
             <ImageView

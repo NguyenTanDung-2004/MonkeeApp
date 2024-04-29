@@ -1,41 +1,34 @@
 {
   "project_info": {
-    "project_number": "94883443994",
-    "project_id": "monkeeapp-2a044",
-    "storage_bucket": "monkeeapp-2a044.appspot.com"
+    "project_number": "359712479321",
+    "firebase_url": "https://monkee-app-3eabb-default-rtdb.firebaseio.com",
+    "project_id": "monkee-app-3eabb",
+    "storage_bucket": "monkee-app-3eabb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:94883443994:android:9dc1cb821225f530b5a8a3",
+        "mobilesdk_app_id": "1:359712479321:android:bc953568cde698d3b03948",
         "android_client_info": {
           "package_name": "com.example.monkeeapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "94883443994-pg6n6f4uaqv7fc5c9kfplaa89fmh474t.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.monkeeapp",
-            "certificate_hash": "dbc05fb042e9c01d5a0353b205954262c1a6bd9c"
-          }
-        },
-        {
-          "client_id": "94883443994-b54g0ed2sfb2otng2nvqo9mql5gi1rdp.apps.googleusercontent.com",
+          "client_id": "359712479321-j22v7fafeuq5t2otb01uimr2vf77a0ts.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAT8pg5G5_gDtqMjoZzmUss8Cg_ULiH4do"
+          "current_key": "AIzaSyBnqWpF0MN-Q6Y3khErH8tVcKf3GqX7vs4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "94883443994-b54g0ed2sfb2otng2nvqo9mql5gi1rdp.apps.googleusercontent.com",
+              "client_id": "359712479321-j22v7fafeuq5t2otb01uimr2vf77a0ts.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -1,7 +1,6 @@
 package com.example.monkeeapp;
 
 import android.os.Bundle;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -9,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import com.example.monkeeapp.Dung.User.user;
 
 public class Home extends AppCompatActivity {
 
@@ -23,7 +21,6 @@ public class Home extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        TextView obj = findViewById(R.id.abc);
-        obj.setText(user.email);
+        Toast.makeText(this, com.example.monkeeapp.Dung.User.user.email, Toast.LENGTH_SHORT).show();
     }
 }

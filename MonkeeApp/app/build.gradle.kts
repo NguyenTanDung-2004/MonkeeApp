@@ -4,14 +4,6 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        getByName("debug") {
-            storeFile = file("C:\\Users\\user\\mykeystore.jks")
-            storePassword = "01654541475"
-            keyAlias = "myalias"
-            keyPassword = "01654541475"
-        }
-    }
     namespace = "com.example.monkeeapp"
     compileSdk = 34
 
