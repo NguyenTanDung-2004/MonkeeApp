@@ -35,6 +35,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -57,4 +60,10 @@ dependencies {
     // Also add the dependency for the Google Play services library and specify its version
     implementation("com.google.android.gms:play-services-auth:21.1.0")
     //dependencies cua Dung
+
+    //dependencies cua Giang
+    implementation("com.github.blackfizz:eazegraph:1.2.5l@aar")
+    implementation("com.nineoldandroids:library:2.4.0")
+    implementation("it.xabaras.android:recyclerview-swipedecorator:1.4")
+    //dependencies cua Giang
 }

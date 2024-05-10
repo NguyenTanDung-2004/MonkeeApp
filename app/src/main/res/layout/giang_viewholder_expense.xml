@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginVertical="8dp"
+    android:layout_marginHorizontal="2dp"
+    android:background="@drawable/giang_background_expense"
+    android:elevation="4dp"
+    android:id="@+id/constraintLayout">
+    <View
+        android:id="@+id/viewAnUong"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/giang_category_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgCategory"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:src="@drawable/icon_eat"
+        app:layout_constraintBottom_toBottomOf="@+id/viewAnUong"
+        app:layout_constraintEnd_toEndOf="@+id/viewAnUong"
+        app:layout_constraintStart_toStartOf="@+id/viewAnUong"
+        app:layout_constraintTop_toTopOf="@+id/viewAnUong" />
+
+    <TextView
+        android:id="@+id/txtCategoryName"
+        android:maxWidth="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="36dp"
+        android:text="Ăn uống"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/viewAnUong"
+        app:layout_constraintTop_toTopOf="@+id/viewAnUong"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="01.05.2024"
+        android:textColor="#ababab"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewAnUong"
+        app:layout_constraintStart_toStartOf="@+id/txtCategoryName"
+        app:layout_constraintTop_toBottomOf="@+id/txtCategoryName" />
+
+    <TextView
+        android:id="@+id/txtMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="- 50 000"
+        android:textColor="@color/Giang_green"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:text="ăn phở bò"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtCategoryName" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
