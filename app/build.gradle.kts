@@ -56,5 +56,13 @@ dependencies {
 
     // Also add the dependency for the Google Play services library and specify its version
     implementation("com.google.android.gms:play-services-auth:21.1.0")
+
+    // https://mvnrepository.com/artifact/io.github.chaosleung/pinview
+    implementation("io.github.chaosleung:pinview:1.4.4")
+    // https://mvnrepository.com/artifact/javax.mail/javax.mail-api
+    implementation ("com.sun.mail:android-mail:1.6.0")
+    // https://mvnrepository.com/artifact/net.sourceforge.jtds/jtds
+    implementation("net.sourceforge.jtds:jtds:1.3.1")
+
     //dependencies cua Dung
 }

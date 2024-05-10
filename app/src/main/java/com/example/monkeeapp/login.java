@@ -23,6 +23,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.monkeeapp.Database.connect_database;
 import com.example.monkeeapp.Dung.Event_for_login.event_for_login;
 import com.example.monkeeapp.Dung.User.user;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -58,6 +59,8 @@ public class login extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        connect_database obj = new connect_database();
+        obj.create_connect_database();
         event_for_input(this);
         event_for_eye(this);
         event_for_QuenMatKhau(this);

@@ -9,4 +9,5 @@
     <color name="Dung_buttonGoogle_touch">#e5e5e5</color>
     <color name="Dung_input_error">#d90429</color>
     <color name="Dung_buttonDangNhap_click">#b388eb</color>
+    <color name="Dung_code_error">#d90429</color>
 </resources>
