@@ -10,7 +10,10 @@ import com.example.monkeeapp.Dung.utils.encrypt_password;
 public class sql_dangky {
     public static int create_id_for_user() throws SQLException {
         Statement statement = connect_database.connect.createStatement();
-        String query = "SELECT MAX(CAST(userid AS INT))\n" +
+        String query = "SELECT CASE \n" +
+                "           WHEN MAX(CAST(userid AS INT)) IS NULL THEN 0\n" +
+                "           ELSE MAX(CAST(userid AS INT))\n" +
+                "       END AS max_userid\n" +
                 "FROM [user];";
         ResultSet resultSet = statement.executeQuery(query);
         int result = 1;
