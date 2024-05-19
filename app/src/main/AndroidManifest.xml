@@ -17,9 +17,9 @@
         <activity
             android:name=".dung_dang_ky"
             android:exported="true" />
-        <activity
-            android:name=".dung_dangky_email"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".dung_dangky_email"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".quen_mat_khau"
             android:exported="true" />

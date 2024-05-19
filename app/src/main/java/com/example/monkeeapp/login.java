@@ -23,11 +23,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-<<<<<<< HEAD
 import com.example.monkeeapp.Database.Dung.SQL_DangKy.sql_dangky;
 import com.example.monkeeapp.Database.Dung.SQL_DangNhap.sql_dangnhap;
-=======
->>>>>>> 284aaa838766d17487ea0a4a394d691326336e55
+
 import com.example.monkeeapp.Database.connect_database;
 import com.example.monkeeapp.Dung.Event_for_login.event_for_login;
 import com.example.monkeeapp.Dung.User.user;
