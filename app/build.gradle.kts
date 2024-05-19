@@ -35,6 +35,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -65,4 +68,10 @@ dependencies {
     implementation("net.sourceforge.jtds:jtds:1.3.1")
 
     //dependencies cua Dung
+
+    //dependencies cua Giang
+    implementation("com.github.blackfizz:eazegraph:1.2.5l@aar")
+    implementation("com.nineoldandroids:library:2.4.0")
+    implementation("it.xabaras.android:recyclerview-swipedecorator:1.4")
+    //dependencies cua Giang
 }

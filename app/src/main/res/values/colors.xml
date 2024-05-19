@@ -10,4 +10,13 @@
     <color name="Dung_input_error">#d90429</color>
     <color name="Dung_buttonDangNhap_click">#b388eb</color>
     <color name="Dung_code_error">#d90429</color>
+
+    <color name="Giang_primary">#CBA9F4</color>
+    <color name="Giang_green">#679C47</color>
+    <color name="Giang_red">#E42222</color>
+    <color name="Giang_purple_light">#F0E4FF</color>
+    <color name="Giang_text_gray">#6C6969</color>
+    <color name="Giang_light_background">#F8F9F9</color>
+    <color name="Giang_gray_background">#E7ECEC</color>
+    <color name="Giang_red_light">#FFB1B1</color>
 </resources>
