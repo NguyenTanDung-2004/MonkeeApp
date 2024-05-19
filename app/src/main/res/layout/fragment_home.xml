@@ -26,7 +26,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:fontFamily="sans-serif-light"
-                    android:text="Xin chào, Phan Giang"
+                    android:text="Xin chào, admin"
                     android:textColor="#fff"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -406,6 +406,11 @@
                         android:layout_height="match_parent"
                         android:clipToPadding="false" />
 
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:background="#F8F9F9" />
                 </LinearLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout

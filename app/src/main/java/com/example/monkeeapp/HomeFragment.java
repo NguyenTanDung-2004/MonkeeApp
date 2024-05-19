@@ -14,12 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.monkeeapp.Database.connect_database;
 import com.example.monkeeapp.Giang.ExpenseAdapter.ExpenseAdapter;
 import com.example.monkeeapp.Giang.ExpenseView.ExpenseView;
+import com.example.monkeeapp.Giang.interact_with_database.interact_with_expense;
+import com.example.monkeeapp.User.user;
 import com.example.monkeeapp.databinding.FragmentHomeBinding;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.sql.*;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,17 +37,27 @@ public class HomeFragment extends Fragment {
     private List<ExpenseView> listExpenses;
     private FragmentHomeBinding binding;
     private View view;
+    private TextView txtHello;
+    Connection conn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         view = binding.getRoot();
-
+        txtHello = view.findViewById(R.id.txtHello);
         RecyclerView rcvExpense = binding.rcvExpense;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
         rcvExpense.setLayoutManager(linearLayoutManager);
 
-        listExpenses = getListExpenses();
+        connect_database obj = new connect_database();
+        obj.create_connect_database();
+        conn = obj.connect;
+
+        setUsername(user.id_user);
+
+        interact_with_expense interact = new interact_with_expense();
+        listExpenses = interact.getListExpenses(user.id_user);
+
         expenseAdapter = new ExpenseAdapter(listExpenses);
         rcvExpense.setAdapter(expenseAdapter);
 
@@ -51,20 +67,24 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private List<ExpenseView> getListExpenses() {
-        List<ExpenseView> list = new ArrayList<>();
-        list.add(new ExpenseView("icon_eat", "Ăn uống", "01.05.2024", "ăn phở bò", "- 50000"));
-        list.add(new ExpenseView("icon_eat", "Ăn uống", "01.05.2024", "ăn cơm tấm", "- 48000"));
-        list.add(new ExpenseView("icon_home", "Nhà ở", "30.04.2024", "tiền điện, nước", "- 71000"));
-        list.add(new ExpenseView("icon_vehicle", "Phương tiện", "29.04.2024", "xăng", "- 50000"));
-        list.add(new ExpenseView("icon_education", "Giáo dục", "28.04.2024", "mẹ cho", "+ 500000"));
-        list.add(new ExpenseView("icon_shopping", "Mua sắm", "27.04.2024", "1 áo 1 quần", "- 500000"));
-        list.add(new ExpenseView("icon_education", "Tiền thưởng", "26.04.2024", "", "+ 17400000"));
+    private void setUsername(String userId) {
+        String username = "";
+        try {
+            String query = "SELECT Username FROM USER WHERE UserID = ?";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1, userId);
 
-        return list;
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                username = resultSet.getString("Username");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        txtHello.setText("Xin chào, " + username);
     }
-
-
     // vuot de xoa expense
     ExpenseView deleteExpense;
 
@@ -80,6 +100,10 @@ public class HomeFragment extends Fragment {
             int position = viewHolder.getAdapterPosition();
             deleteExpense = listExpenses.get(position);
             listExpenses.remove(position);
+            String id = deleteExpense.getExpenseId();
+            double temp = interact_with_expense.getMoney(id);
+            interact_with_expense.deleteExpense(id, temp);
+
             expenseAdapter.notifyDataSetChanged();
 
             String deleteString = "Đã xóa một chi tiêu";
@@ -87,6 +111,7 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     listExpenses.add(position, deleteExpense);
+                    interact_with_expense.restoreExpense(id, temp);
                     expenseAdapter.notifyDataSetChanged();
                 }
             }).show();

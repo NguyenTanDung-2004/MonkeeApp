@@ -36,7 +36,7 @@ public class GridAdapter extends ArrayAdapter {
     public void setCalendarView(CustomCalendarView calendarView) {
         this.calendarView = calendarView;
     }
-    public GridAdapter(@NonNull Context context, List<Date> dates, Calendar currentDate, List<ExpenseView> expensesList) {
+    public GridAdapter(@NonNull Context context, List<Date> dates, Calendar currentDate, List<ExpenseView> expensesList, int pos) {
         super(context, R.layout.giang_single_date_layout);
 
         this.dates = dates;
@@ -44,17 +44,22 @@ public class GridAdapter extends ArrayAdapter {
         this.expensesList = expensesList;
         inflater = LayoutInflater.from(context);
 
-        Calendar todayCalendar = Calendar.getInstance();
-        for (int i = 0; i < dates.size(); i++) {
-            Calendar dateCalendar = Calendar.getInstance();
-            dateCalendar.setTime(dates.get(i));
-            if (dateCalendar.get(Calendar.YEAR) == todayCalendar.get(Calendar.YEAR) &&
-                    dateCalendar.get(Calendar.MONTH) == todayCalendar.get(Calendar.MONTH) &&
-                    dateCalendar.get(Calendar.DAY_OF_MONTH) == todayCalendar.get(Calendar.DAY_OF_MONTH)) {
-                selectedPosition = i;
-                break;
+        if (pos == -1) {
+            Calendar todayCalendar = Calendar.getInstance();
+            for (int i = 0; i < dates.size(); i++) {
+                Calendar dateCalendar = Calendar.getInstance();
+                dateCalendar.setTime(dates.get(i));
+                if (dateCalendar.get(Calendar.YEAR) == todayCalendar.get(Calendar.YEAR) &&
+                        dateCalendar.get(Calendar.MONTH) == todayCalendar.get(Calendar.MONTH) &&
+                        dateCalendar.get(Calendar.DAY_OF_MONTH) == todayCalendar.get(Calendar.DAY_OF_MONTH)) {
+                    selectedPosition = i;
+                    break;
+                }
             }
+        } else {
+            selectedPosition = pos;
         }
+
     }
 
 

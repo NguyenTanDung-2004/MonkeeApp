@@ -20,7 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.monkeeapp.Giang.ExpenseAdapter.ExpenseAdapter;
 import com.example.monkeeapp.Giang.ExpenseView.ExpenseView;
+import com.example.monkeeapp.Giang.interact_with_database.interact_with_expense;
 import com.example.monkeeapp.R;
+import com.example.monkeeapp.User.user;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
@@ -48,7 +50,7 @@ public class CustomCalendarView extends LinearLayout {
     Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
     Context context;
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy", new Locale("vi", "VN"));
-    SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM", new Locale("vi", "VN"));
+    SimpleDateFormat monthFormat = new SimpleDateFormat("MM", new Locale("vi", "VN"));
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", new Locale("vi", "VN"));
     List<Date> dates = new ArrayList<>();
     List<ExpenseView> expensesList = new ArrayList<>();
@@ -63,19 +65,19 @@ public class CustomCalendarView extends LinearLayout {
         this.context = context;
 
         InitializeLayout();
-        setUpCalendar();
+        setUpCalendar(-1);
         previousBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 calendar.add(Calendar.MONTH, -1);
-                setUpCalendar();
+                setUpCalendar(-1);
             }
         });
         nextBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 calendar.add(Calendar.MONTH, 1);
-                setUpCalendar();
+                setUpCalendar(-1);
             }
         });
     }
@@ -99,7 +101,7 @@ public class CustomCalendarView extends LinearLayout {
 
     }
 
-    private void setUpCalendar() {
+    private void setUpCalendar(int pos) {
         String current_date = dateFormat.format(calendar.getTime());
         currentDate.setText(current_date);
         dates.clear();
@@ -108,7 +110,9 @@ public class CustomCalendarView extends LinearLayout {
         monthCalendar.set(Calendar.DAY_OF_MONTH, 1);
         int firstDayOfMonth = monthCalendar.get(Calendar.DAY_OF_WEEK) -1;
         monthCalendar.add(Calendar.DAY_OF_MONTH, - firstDayOfMonth);
-        expenseForMonth(monthFormat.format(calendar.getTime()), yearFormat.format(calendar.getTime()));
+
+
+        expensesList = interact_with_expense.expenseForMonth(user.id_user, monthFormat.format(calendar.getTime()), yearFormat.format(calendar.getTime()));
 
         while (dates.size() < MAX_CALENDAR_DAYS) {
             dates.add(monthCalendar.getTime());
@@ -116,29 +120,12 @@ public class CustomCalendarView extends LinearLayout {
 
         }
 
-        gridAdapter = new GridAdapter(context, dates, calendar, expensesList);
+        gridAdapter = new GridAdapter(context, dates, calendar, expensesList, pos);
         gridAdapter.setCalendarView(this);
         gridView.setAdapter(gridAdapter);
 
         setRcvExpenseForDate(gridAdapter.getSelectedPosition());
     }
-
-    private void expenseForMonth(String month, String year) {
-        // sql server de lay du lieu
-        expensesList.clear();
-
-        expensesList.add(new ExpenseView("icon_eat", "Ăn uống", "01.05.2024", "ăn phở bò", "- 50000"));
-        expensesList.add(new ExpenseView("icon_eat", "Ăn uống", "01.05.2024", "ăn cơm tấm", "- 48000"));
-
-        expensesList.add(new ExpenseView("icon_eat", "Ăn uống", "06.05.2024", "ăn phở bò", "- 50000"));
-        expensesList.add(new ExpenseView("icon_education", "Tiền thưởng", "06.05.2024", "", "+ 17400000"));
-
-        expensesList.add(new ExpenseView("icon_shopping", "Mua sắm", "29.05.2024", "1 áo 1 quần", "- 500000"));
-        expensesList.add(new ExpenseView("icon_eat", "Ăn uống", "29.05.2024", "ăn phở bò", "- 50000"));
-
-        // close sql
-    }
-
     public String dateToString(Date selectedDay) {
         SimpleDateFormat dayFormat = new SimpleDateFormat("dd.MM.yyyy", new Locale("vi", "VN"));
         return dayFormat.format(selectedDay);
@@ -151,7 +138,7 @@ public class CustomCalendarView extends LinearLayout {
         Date date = gridAdapter.getItem(position);
         selectedDate.setText(dateToString(date));
 
-        listExpensesForDate = getExpensesListForDate(dateToString(date));
+        listExpensesForDate =  interact_with_expense.getExpensesListForDate(user.id_user, dateToString(date));
         updateExpenseStatistics();
 
         expenseAdapter = new ExpenseAdapter(listExpensesForDate);
@@ -161,28 +148,6 @@ public class CustomCalendarView extends LinearLayout {
         itemTouchHelper.attachToRecyclerView(rcvExpense);
     }
 
-    // lay ra chi tieu voi ngay tương ung
-    public List<ExpenseView> getExpensesListForDate(String date) {
-        List<ExpenseView> list = new ArrayList<>();
-
-        // truy xuat bang ngay trong csdl
-
-        if (date.equals("01.05.2024")) {
-            list.add(new ExpenseView("icon_eat", "Ăn uống", date, "ăn phở bò", "- 50000"));
-            list.add(new ExpenseView("icon_eat", "Ăn uống", date, "ăn cơm tấm", "- 48000"));
-        }
-
-        if (date.equals("06.05.2024")) {
-            list.add(new ExpenseView("icon_eat", "Ăn uống", date, "ăn phở bò", "- 50000"));
-            list.add(new ExpenseView("icon_education", "Tiền thưởng", date, "", "+ 17400000"));
-        }
-        if (date.equals("29.05.2024")) {
-            list.add(new ExpenseView("icon_shopping", "Mua sắm", date, "1 áo 1 quần", "- 500000"));
-            list.add(new ExpenseView("icon_eat", "Ăn uống", date, "ăn phở bò", "- 50000"));
-        }
-
-        return list;
-    }
     private void updateExpenseStatistics() {
         long thu = getTongThu(listExpensesForDate);
         long chi = getTongChi(listExpensesForDate);
@@ -229,21 +194,27 @@ public class CustomCalendarView extends LinearLayout {
             int position = viewHolder.getAdapterPosition();
             deleteExpense = listExpensesForDate.get(position);
             listExpensesForDate.remove(position);
+
+            String id = deleteExpense.getExpenseId();
+            double temp =  interact_with_expense.getMoney(id);
+            interact_with_expense.deleteExpense(id, temp);
+
+            expensesList = interact_with_expense.expenseForMonth(user.id_user, monthFormat.format(calendar.getTime()), yearFormat.format(calendar.getTime()));
+
             expenseAdapter.notifyDataSetChanged();
             updateExpenseStatistics();
-            expenseForMonth(monthFormat.format(calendar.getTime()), yearFormat.format(calendar.getTime()));
             // goi setUpCalendar để thay đổi dữ liệu trng ô gridView
-            // setUpCalendar();
+            setUpCalendar(position);
 
             String deleteString = "Đã xóa một chi tiêu";
             Snackbar.make(view, deleteString, Snackbar.LENGTH_LONG).setAction("Hoàn tác", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     listExpensesForDate.add(position, deleteExpense);
+                    interact_with_expense.restoreExpense(id, temp);
                     expenseAdapter.notifyDataSetChanged();
                     updateExpenseStatistics();
-                    // goi setUpCalendar để thay đổi dữ liệu trng ô gridView
-                    // setUpCalendar();
+                    setUpCalendar(position);
                 }
             }).show();
         }

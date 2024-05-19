@@ -151,13 +151,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="-40dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
@@ -173,11 +174,11 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_marginLeft="10dp"
                         android:layout_width="95dp"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/textView"
@@ -185,9 +186,9 @@
                             android:layout_height="wrap_content"
                             android:text="Thu nhập"
                             android:textAlignment="center"
-                            android:textStyle="bold"
                             android:textColor="@color/black"
-                            android:textSize="11sp"/>
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/txtTongThu"
@@ -199,16 +200,18 @@
                             android:textSize="11sp"
                             android:textStyle="bold" />
                     </LinearLayout>
+
                     <View
                         android:layout_width="1.5dp"
                         android:layout_height="36dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/giang_vertical_line_background"/>
+                        android:background="@drawable/giang_vertical_line_background" />
+
                     <LinearLayout
                         android:layout_width="95dp"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/textView3"
@@ -216,9 +219,9 @@
                             android:layout_height="wrap_content"
                             android:text="Chi tiêu"
                             android:textAlignment="center"
-                            android:textStyle="bold"
+                            android:textColor="@color/black"
                             android:textSize="11sp"
-                            android:textColor="@color/black"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/txtTongChi"
@@ -234,8 +237,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/textView7"
@@ -243,27 +246,29 @@
                             android:layout_height="wrap_content"
                             android:text="Tổng"
                             android:textAlignment="center"
-                            android:textStyle="bold"
                             android:textColor="@color/black"
-                            android:textSize="13sp"/>
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/txtConLai"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="0"
                             android:textAlignment="center"
-                            android:textStyle="bold"
+                            android:textColor="@color/Giang_primary"
                             android:textSize="13sp"
-                            android:textColor="@color/Giang_primary"/>
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:paddingHorizontal="16dp">
+
                 <TextView
                     android:id="@+id/selectedDate"
                     android:layout_width="wrap_content"
@@ -277,16 +282,10 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcvExpenseForDate"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="80dp"
                     android:clipToPadding="false" />
-
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:background="#F8F9F9" />
             </LinearLayout>
-
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
