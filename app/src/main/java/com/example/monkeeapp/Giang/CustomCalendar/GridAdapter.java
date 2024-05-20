@@ -59,7 +59,6 @@ public class GridAdapter extends ArrayAdapter {
         } else {
             selectedPosition = pos;
         }
-
     }
 
 

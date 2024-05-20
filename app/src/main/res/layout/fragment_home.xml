@@ -61,7 +61,7 @@
                 android:id="@+id/txtTotalMoney"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2 000 000"
+                android:text="0"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="32sp"
@@ -473,7 +473,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="2 500 000"
+                            android:text="0"
                             android:textColor="#714AB8"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -485,7 +485,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="500 000"
+                            android:text="0"
                             android:textColor="#679C47"
                             android:textSize="20sp"
                             android:textStyle="bold" />
