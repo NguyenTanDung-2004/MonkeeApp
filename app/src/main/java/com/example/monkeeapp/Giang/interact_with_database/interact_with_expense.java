@@ -53,14 +53,49 @@ public class interact_with_expense {
 
         return expenseList;
     }
+    public static List<ExpenseView> getListExpensesTop10(String userId) {
+        List<ExpenseView> expenseList = new ArrayList<>();
+        try {
+            String query = "SELECT TOP 10 e.ExpenseID, c.UrlIcon, c.CategoryName, e.Date, e.Note, CONCAT(e.Type, ' ', e.Money) AS Money " +
+                    "FROM EXPENSE e " +
+                    "JOIN CATEGORY c ON e.CategoryID = c.CategoryID " +
+                    "WHERE e.UserID = ? AND e.Money <> 0" +
+                    "ORDER BY e.Date asc";
+
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1, userId);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String expenseID = resultSet.getString("ExpenseID");
+                String urlIcon = resultSet.getString("UrlIcon");
+                String categoryName = resultSet.getString("CategoryName");
+                String date = dateToString(resultSet.getDate("Date"));
+                String note = resultSet.getString("Note");
+                String money = resultSet.getString("Money");
+                if (money.contains(".")) {
+                    money = money.substring(0, money.indexOf("."));
+                }
+                ExpenseView expenseView = new ExpenseView(expenseID, urlIcon, categoryName, date, note, money);
+                expenseList.add(expenseView);
+            }
+
+        } catch (SQLException e) {
+//            e.printStackTrace();
+        }
+
+        return expenseList;
+    }
 
     public static List<ExpenseView> expenseForMonth(String user_id, String month, String year) {
         List<ExpenseView> expenseList = new ArrayList<>();
         try {
-            String query = "SELECT e.ExpenseID, c.UrlIcon, c.CategoryName, e.Date, e.Note, CONCAT(e.Type, ' ', e.Money) AS Money " +
+            String query = "SELECT  e.ExpenseID, c.UrlIcon, c.CategoryName, e.Date, e.Note, CONCAT(e.Type, ' ', e.Money) AS Money " +
                     "FROM EXPENSE e " +
                     "JOIN CATEGORY c ON e.CategoryID = c.CategoryID " +
-                    "WHERE e.UserID = ? AND MONTH(e.Date) = ? AND YEAR(e.Date) = ? AND e.Money <> 0";
+                    "WHERE e.UserID = ? AND MONTH(e.Date) = ? AND YEAR(e.Date) = ? AND e.Money <> 0" +
+                    "ORDER BY e.Date asc";
+
 
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setString(1, user_id);
@@ -135,7 +170,23 @@ public class interact_with_expense {
             e.printStackTrace();
         }
     }
+    public static String getUsername(String userId) {
+        String username = "";
+        try {
+            String query = "SELECT Username FROM [USER] WHERE UserID = ?";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1, userId);
 
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                username = resultSet.getString("Username");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return username;
+    }
     public static double  getMoney(String expenseId) {
         double temp = 0.0;
         try {
@@ -167,4 +218,5 @@ public class interact_with_expense {
             e.printStackTrace();
         }
     }
+
 }

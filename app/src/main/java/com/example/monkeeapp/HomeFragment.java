@@ -24,6 +24,8 @@ import com.example.monkeeapp.User.user;
 import com.example.monkeeapp.databinding.FragmentHomeBinding;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.w3c.dom.Text;
+
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
@@ -38,13 +40,21 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private View view;
     private TextView txtHello;
+    private TextView txtTotalMoney;
+    private  TextView txtThu;
+    private TextView txtChi;
     Connection conn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         view = binding.getRoot();
+
         txtHello = view.findViewById(R.id.txtHello);
+        txtTotalMoney = view.findViewById(R.id.txtTotalMoney);
+        txtThu = view.findViewById(R.id.txtThu);
+        txtChi = view.findViewById(R.id.txtChi);
+
         RecyclerView rcvExpense = binding.rcvExpense;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
         rcvExpense.setLayoutManager(linearLayoutManager);
@@ -54,9 +64,10 @@ public class HomeFragment extends Fragment {
         conn = obj.connect;
 
         setUsername(user.id_user);
+        updateExpenseStatistic(user.id_user);
 
         interact_with_expense interact = new interact_with_expense();
-        listExpenses = interact.getListExpenses(user.id_user);
+        listExpenses = interact_with_expense.getListExpensesTop10(user.id_user);
 
         expenseAdapter = new ExpenseAdapter(listExpenses);
         rcvExpense.setAdapter(expenseAdapter);
@@ -70,7 +81,7 @@ public class HomeFragment extends Fragment {
     private void setUsername(String userId) {
         String username = "";
         try {
-            String query = "SELECT Username FROM USER WHERE UserID = ?";
+            String query = "SELECT Username FROM [USER] WHERE UserID = ?";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setString(1, userId);
 
@@ -82,8 +93,68 @@ public class HomeFragment extends Fragment {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+         if (!username.equals(""))
+             txtHello.setText("Xin chào, " + username);
+    }
+    private String[] getExpenseMoney(String userId) {
+        List<String> expenseMoneyList = new ArrayList<>();
+        try {
+            String query = "SELECT CONCAT(e.Type, ' ', e.Money) AS Money " +
+                    "FROM EXPENSE e " +
+                    "WHERE e.UserID = ? AND e.Money <> 0";
 
-        txtHello.setText("Xin chào, " + username);
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1, userId);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String money = resultSet.getString("Money");
+                if (money.contains(".")) {
+                    money = money.substring(0, money.indexOf("."));
+                }
+                expenseMoneyList.add(money);
+            }
+
+        } catch (SQLException e) {
+            // Xử lý exception
+            e.printStackTrace();
+        }
+
+        String[] expenseMoneyArray = new String[expenseMoneyList.size()];
+        expenseMoneyArray = expenseMoneyList.toArray(expenseMoneyArray);
+        return expenseMoneyArray;
+    }
+    private long getTongThu(String user_id) {
+        String[] list = getExpenseMoney(user_id);
+
+        long sum = 0;
+        for (int i = 0;i < list.length; i++) {
+            if (list[i].split(" ")[0].equals("+"))
+                sum = sum + Long.parseLong(list[i].split(" ")[1]);
+        }
+        return sum;
+    }
+    private long getTongChi(String user_id) {
+        String[] list = getExpenseMoney(user_id);
+
+        long sum = 0;
+        for (int i = 0;i < list.length; i++) {
+            if (list[i].split(" ")[0].equals("-"))
+                sum = sum + Long.parseLong(list[i].split(" ")[1]);
+        }
+        return sum;
+    }
+    private void updateExpenseStatistic(String userId) {
+        long thu = getTongThu(userId);
+        long chi = getTongChi(userId);
+        txtThu.setText(String.valueOf(thu));
+        txtChi.setText(String.valueOf(chi));
+
+        if (thu >= chi) {
+            txtTotalMoney.setText("+" + String.valueOf(thu - chi));
+        } else {
+            txtTotalMoney.setText("-" + String.valueOf(chi - thu));
+        }
     }
     // vuot de xoa expense
     ExpenseView deleteExpense;
@@ -100,9 +171,11 @@ public class HomeFragment extends Fragment {
             int position = viewHolder.getAdapterPosition();
             deleteExpense = listExpenses.get(position);
             listExpenses.remove(position);
+
             String id = deleteExpense.getExpenseId();
             double temp = interact_with_expense.getMoney(id);
             interact_with_expense.deleteExpense(id, temp);
+            updateExpenseStatistic(user.id_user);
 
             expenseAdapter.notifyDataSetChanged();
 
@@ -112,6 +185,7 @@ public class HomeFragment extends Fragment {
                 public void onClick(View v) {
                     listExpenses.add(position, deleteExpense);
                     interact_with_expense.restoreExpense(id, temp);
+                    updateExpenseStatistic(user.id_user);
                     expenseAdapter.notifyDataSetChanged();
                 }
             }).show();
