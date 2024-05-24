@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <application
         android:allowBackup="true"
@@ -15,11 +17,31 @@
         android:theme="@style/Theme.MonkeeApp"
         tools:targetApi="31">
         <activity
-            android:name=".dung_dang_ky"
+            android:name=".Start_1_Activity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Start_2_Activity"
             android:exported="true" />
-<!--        <activity-->
-<!--            android:name=".dung_dangky_email"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".dung_dang_ky"
+            android:exported="true" /> <!-- <activity -->
+        <!-- android:name=".dung_dangky_email" -->
+        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".login"
+            android:exported="true">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+        </activity>
         <activity
             android:name=".quen_mat_khau"
             android:exported="true" />
@@ -29,15 +51,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-        <activity
-            android:name=".login"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

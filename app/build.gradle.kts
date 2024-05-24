@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.firebase.database)
+    implementation(libs.play.services.cast.framework)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -74,4 +75,12 @@ dependencies {
     implementation("com.nineoldandroids:library:2.4.0")
     implementation("it.xabaras.android:recyclerview-swipedecorator:1.4")
     //dependencies cua Giang
+
+    //dependencies cua QAnh
+    implementation ("com.github.dhaval2404:imagepicker:2.1")
+    implementation ("androidx.fragment:fragment:1.5.5")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation ("me.relex:circleindicator:2.1.6")
+    //dependencies cua QAnh
+
 }

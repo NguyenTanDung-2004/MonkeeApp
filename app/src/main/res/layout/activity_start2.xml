@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/QA_ScreenBackGround"
+    android:id="@+id/start2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".Start_2_Activity">
+
+    <ImageView
+        android:id="@+id/imageLogo1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="100dp"
+        android:scaleType="fitEnd"
+        android:visibility="visible"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logo" />
+    <TextView
+        android:id="@+id/textLogo1"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="122dp"
+        android:fontFamily="@font/ubuntubold"
+        android:text="monkee"
+        android:textAlignment="textStart"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        style="@style/QA_TextColor"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageLogo1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="380dp"
+        android:layout_height="650dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="200dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/circle_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="198dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:ci_drawable="@drawable/qa_shape"
+        app:ci_drawable_unselected="@drawable/qa_shapegrey"
+        app:ci_gravity="center_vertical|center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewpager"
+        tools:ignore="MissingClass">
+
+    </me.relex.circleindicator.CircleIndicator>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonStart"
+        style="@style/QA_TextColor"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/qa_btn_background"
+        android:fontFamily="@font/baloo2semibold"
+        android:shadowDx="7"
+        android:shadowDy="7"
+        android:text="BẮT ĐẦu"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circle_indicator"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText">
+
+    </androidx.appcompat.widget.AppCompatButton>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

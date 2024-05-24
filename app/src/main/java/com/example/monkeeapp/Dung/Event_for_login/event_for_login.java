@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 
 import com.example.monkeeapp.Database.Dung.SQL_DangNhap.sql_dangnhap;
+import com.example.monkeeapp.MainActivity;
 import com.example.monkeeapp.R;
 import com.example.monkeeapp.Dung.custom_viewpager.event_to_change_page;
 import com.example.monkeeapp.Dung.*;
@@ -164,7 +165,9 @@ public class event_for_login {
                             } catch (SQLException e) {
                                 throw new RuntimeException(e);
                             }
-                            Toast.makeText(context, user.id_user, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(context, user.id_user, Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(context, MainActivity.class);
+                            context.startActivity(intent);
                         }
                         flag = 0;
                         DangNhap.setText("ĐĂNG NHẬP");

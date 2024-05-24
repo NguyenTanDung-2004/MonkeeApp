@@ -16,6 +16,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        //Maven cua QAnh
+        maven("https://jitpack.io")
     }
 }
 

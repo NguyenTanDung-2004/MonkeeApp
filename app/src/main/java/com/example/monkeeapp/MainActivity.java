@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new CalendarFragment());
 //            else if (item.getItemId() == R.id.report)
 //                replaceFragment(new ReportFragment());
-//            else if (item.getItemId() == R.id.setting)
-//                replaceFragment(new SettingFragment());
+            else if (item.getItemId() == R.id.setting)
+                replaceFragment(new UserFragment());
 
             return  true;
         });

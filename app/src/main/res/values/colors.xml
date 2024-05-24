@@ -19,4 +19,8 @@
     <color name="Giang_light_background">#F8F9F9</color>
     <color name="Giang_gray_background">#E7ECEC</color>
     <color name="Giang_red_light">#FFB1B1</color>
+
+    <color name="QA_purple">#CBA9F4</color>
+    <color name="QA_grey">#ABABAB</color>
+    <color name="QA_purple_btn">#b388eb</color>
 </resources>

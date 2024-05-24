@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/image_View1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/anh1" />
+        <TextView
+            android:id="@+id/textTitle"
+            style="@style/QA_TextColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitosansextrabold"
+            android:text="Hiệu Quả &amp; Đơn Giản"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            tools:ignore="HardcodedText"
+            app:layout_constraintTop_toBottomOf="@+id/image_View1"/>
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/baloo2"
+            android:text="Ghi chép thu chi nhanh chóng, theo dõi ngân sách dễ dàng."
+            android:textAlignment="center"
+            android:textColor="#ABABAB"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText"
+            app:layout_constraintTop_toBottomOf="@+id/textTitle"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
