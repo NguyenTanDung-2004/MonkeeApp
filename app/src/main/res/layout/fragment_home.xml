@@ -40,9 +40,9 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="24dp"
-                    android:background="@drawable/giang_custom_avatar"
+
                     android:padding="8dp"
-                    android:src="@drawable/default_ava"
+                    app:cardCornerRadius="120dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

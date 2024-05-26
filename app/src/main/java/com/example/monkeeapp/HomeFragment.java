@@ -1,6 +1,7 @@
 package com.example.monkeeapp;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
 
@@ -11,15 +12,19 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.monkeeapp.Database.QAnh.sql_for_setting.sql_for_setting;
 import com.example.monkeeapp.Database.connect_database;
 import com.example.monkeeapp.Giang.ExpenseAdapter.ExpenseAdapter;
 import com.example.monkeeapp.Giang.ExpenseView.ExpenseView;
 import com.example.monkeeapp.Giang.interact_with_database.interact_with_expense;
+import com.example.monkeeapp.QAnh.utils.SaveImg.SaveImg;
 import com.example.monkeeapp.User.user;
 import com.example.monkeeapp.databinding.FragmentHomeBinding;
 import com.google.android.material.snackbar.Snackbar;
@@ -43,6 +48,7 @@ public class HomeFragment extends Fragment {
     private TextView txtTotalMoney;
     private  TextView txtThu;
     private TextView txtChi;
+    private ImageView ava;
     Connection conn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +60,7 @@ public class HomeFragment extends Fragment {
         txtTotalMoney = view.findViewById(R.id.txtTotalMoney);
         txtThu = view.findViewById(R.id.txtThu);
         txtChi = view.findViewById(R.id.txtChi);
+        ava = view.findViewById(R.id.imgAva);
 
         RecyclerView rcvExpense = binding.rcvExpense;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
@@ -65,6 +72,24 @@ public class HomeFragment extends Fragment {
 
         setUsername(user.id_user);
         updateExpenseStatistic(user.id_user);
+
+        String avaSQL = sql_for_setting.get_ava(user.id_user, conn);
+        if (avaSQL != null && !avaSQL.isEmpty()) {
+            // Assuming the URL is a base64 encoded string or similar, you may need to adjust the conversion.
+            byte[] imageBytes = Base64.decode(avaSQL, Base64.DEFAULT);
+            Bitmap avatarBitmap = SaveImg.Byte_to_Img(imageBytes, conn);
+            if (avatarBitmap != null) {
+                ava.setImageBitmap(avatarBitmap);
+            } else {
+                // Set a default or error image
+                ava.setImageResource(R.drawable.giang_custom_avatar);
+            }
+        }
+        else {
+            // Set a default or error image
+            ava.setImageResource(R.drawable.giang_custom_avatar);
+        }
+
 
         interact_with_expense interact = new interact_with_expense();
         listExpenses = interact_with_expense.getListExpensesTop10(user.id_user);
