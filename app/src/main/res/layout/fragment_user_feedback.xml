@@ -12,49 +12,46 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginBottom="60dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="53dp"
-            android:layout_marginTop="50dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:gravity="center">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonreturn_feedback"
                 style="@style/QA_IconReturnBackground"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="18dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 tools:ignore="MissingConstraints">
 
             </androidx.appcompat.widget.AppCompatButton>
 
             <TextView
                 style="@style/QA_TextColor"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="120dp"
                 android:fontFamily="@font/baloo2extrabold"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="Ý Kiến Đóng Góp"
+                android:text="Đóng góp ý kiến"
                 android:textAlignment="center"
-                android:textSize="25sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/buttonreturn_feedback"
-                tools:ignore="HardcodedText"
-                tools:layout_editor_absoluteY="-3dp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
 
             style="@style/QA_CardBackGround"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="280dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp">
@@ -71,7 +68,7 @@
                 android:hint="Ý kiến của bạn là..."
                 android:inputType="textMultiLine"
                 android:padding="10dp"
-                android:textSize="20sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +89,7 @@
             android:shadowDx="7"
             android:shadowDy="7"
             android:text="GỬI"
-            android:textSize="20sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/content_feedback"
@@ -100,8 +97,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-15dp">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:layout_width="match_parent"
