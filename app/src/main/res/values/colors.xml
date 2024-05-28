@@ -23,4 +23,8 @@
     <color name="QA_purple">#CBA9F4</color>
     <color name="QA_grey">#ABABAB</color>
     <color name="QA_purple_btn">#b388eb</color>
+
+    <color name="dat_pink">#CBA9F4</color>
+    <color name="dat_xam_nhat">#CCCCCC</color>
+    <color name="dat_green">#679C47</color>
 </resources>

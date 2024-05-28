@@ -83,4 +83,13 @@ dependencies {
     implementation ("me.relex:circleindicator:2.1.6")
     //dependencies cua QAnh
 
+    //dependencies cua Dat
+    implementation(libs.projectlombok.lombok) // Phiên bản có thể thay đổi theo thời gian
+    annotationProcessor(libs.projectlombok.lombok)
+    implementation(libs.picasso) // Picasso
+    implementation(libs.annotation) // Annotation
+    implementation(libs.retrofit) // Retrofit
+    implementation(libs.converter.gson) // Retrofit Gson converter
+    implementation(libs.jackson.databind) // Jackson Databind
+    implementation(libs.mpandroidchart) // MPAndroidChart
 }

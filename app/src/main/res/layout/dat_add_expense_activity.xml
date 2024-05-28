@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Dat_AddExpenseActivity">
+
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="THÊM GIAO DỊCH"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/btnChi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dat_btn_square"
+            android:text="Phần chi"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/btnThu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phần thu"
+            android:textSize="15sp"
+            android:background="@drawable/dat_btn_add_expense"
+            android:textColor="@color/black"
+            app:backgroundTint = "@null"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/dat_border_linear"
+        android:padding="12dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngày"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"/>
+
+        <EditText
+            android:id="@+id/edtDate"
+            android:layout_width="108dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="90dp"
+            android:background="@color/white"
+            android:hint="dd/MM/yyyy"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+        <ImageButton
+            android:id="@+id/btndate"
+            android:layout_width="32dp"
+            android:layout_height="26dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/dat_icon_date" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/dat_border_linear"
+        android:padding="12dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ghi chú"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"/>
+
+        <EditText
+            android:id="@+id/edit_note"
+            android:layout_width="159dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="75dp"
+            android:background="@color/white"
+            android:hint="Chưa có"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/dat_border_linear"
+        android:padding="12dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:text="Tiền"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtMoney"
+            android:layout_width="93dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:hint="0"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="80dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="VND"
+            android:textSize="12dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Danh mục"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginLeft="30dp" />
+
+
+    <GridView
+        android:id="@+id/gv_expense"
+        android:layout_width="359dp"
+        android:layout_height="320dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:horizontalSpacing="10dp"
+        android:numColumns="4"
+        android:verticalSpacing="10dp" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="40dp"
+        android:backgroundTint="@color/dat_pink"
+        android:text="THÊM"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+</LinearLayout>
