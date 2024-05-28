@@ -8,10 +8,10 @@ import java.sql.SQLException;
 
 public class connect_database {
     String classes = "net.sourceforge.jtds.jdbc.Driver";
-    protected static String serverName = "192.168.1.5:1433"; // định dạng là <ipv4>:<port>
+    protected static String serverName = "172.16.12.73:1433"; // định dạng là <ipv4>:<port>
     protected static String db = "MONKEE";
     protected static String user = "sa";
-    protected static String password = "1234";
+    protected static String password = "10102004";
     public static Connection connect;
     public void create_connect_database(){
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
