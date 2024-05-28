@@ -24,10 +24,10 @@
         android:layout_below="@id/imageView"
         android:text="Tuyệt vời! Bạn đã đăng ký mật khẩu thành công!"
         android:textAlignment="center"
-        android:textSize="23sp"
+        android:textSize="35px"
         android:textStyle="bold"/>
     <Button
-        android:layout_marginTop="450px"
+        android:layout_marginTop="500px"
         android:id="@+id/tieptuc"
         android:layout_width="match_parent"
         android:layout_marginLeft="100px"
