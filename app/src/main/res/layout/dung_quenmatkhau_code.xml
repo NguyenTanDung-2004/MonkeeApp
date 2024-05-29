@@ -33,7 +33,7 @@
         android:layout_gravity="center_horizontal"
         app:itemWidth="50dp"
         app:itemSpacing="20dp"></com.chaos.view.PinView>
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_marginTop="40px"
         android:id="@+id/tieptuc"
         android:layout_width="match_parent"
@@ -43,6 +43,6 @@
         android:textColor="@color/black"
         android:textSize="30px"
         android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"></Button>
+        android:layout_marginRight="60dp"></androidx.appcompat.widget.AppCompatButton>
 
 </LinearLayout>

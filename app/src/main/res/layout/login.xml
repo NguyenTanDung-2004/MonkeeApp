@@ -114,17 +114,19 @@
                 ></ImageView>
         </RelativeLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/DangNhap"
             android:layout_width="match_parent"
             android:layout_height="125px"
             android:layout_marginLeft="30px"
             android:layout_marginTop="30px"
             android:layout_marginRight="30px"
-            android:background="@drawable/dung_shape_button_danhnhap"
             android:text="Đăng nhập"
             android:textColor="@color/black"
-            android:textSize="30px"></Button>
+            android:textSize="30px"
+            android:background="@drawable/dung_shape_button_danhnhap"
+
+        ></androidx.appcompat.widget.AppCompatButton>
 
         <com.example.monkeeapp.Dung.custom_textview.Baloo2_textView
             android:id="@+id/QuenMatKhau"
