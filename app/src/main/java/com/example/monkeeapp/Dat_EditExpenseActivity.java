@@ -3,6 +3,7 @@ package com.example.monkeeapp;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
@@ -75,6 +76,9 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
             btn_back = findViewById(R.id.btnBack);
             btn_date = findViewById(R.id.btndate);
 
+            edt_money.setInputType(InputType.TYPE_CLASS_NUMBER);
+            edt_date.setInputType(InputType.TYPE_NULL);
+
             btn_date.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -109,7 +113,7 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
 
                     // Lấy layout hiện tại và thay đổi màu nền
                     LinearLayout currentLayout = view.findViewById(R.id.ln_sub1);
-                    currentLayout.setBackgroundResource(R.drawable.dat_border_pink);  // Màu nền khi được chọn
+                    currentLayout.setBackgroundResource(R.drawable.dat_bg_light_pink);  // Màu nền khi được chọn
 
                     // Cập nhật biến lưu trữ layout đã chọn trước đó
                     previousSelectedLayout = currentLayout;

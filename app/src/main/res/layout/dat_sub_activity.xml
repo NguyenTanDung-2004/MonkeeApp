@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
     android:orientation="vertical"
-    android:background="@drawable/dat_border_linear"
+    android:background="@drawable/dat_border_iconpink"
     android:id = "@+id/ln_sub1">
 
         <ImageView
             android:id="@+id/img_item"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            app:srcCompat="@drawable/dat_icon_expense2" />
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/dat_icon_expense2"
+            android:layout_marginBottom="7dp"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/txt_type"

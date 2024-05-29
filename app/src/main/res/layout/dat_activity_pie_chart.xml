@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_margin="10dp"
-        android:background="@drawable/dat_border_pink">
+        android:background="@drawable/dat_bg_pink">
 
         <ImageButton
             android:id="@+id/btnPreMonth"

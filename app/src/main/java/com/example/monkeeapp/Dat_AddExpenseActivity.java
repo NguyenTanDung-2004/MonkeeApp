@@ -1,9 +1,9 @@
 package com.example.monkeeapp;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,6 +27,7 @@ import com.example.monkeeapp.Dat.sql.ExpenseSql;
 import com.example.monkeeapp.Dat.util.Expense;
 import com.example.monkeeapp.Dat.util.Type;
 import com.example.monkeeapp.Database.connect_database;
+import com.example.monkeeapp.User.user;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -77,6 +78,8 @@ public class Dat_AddExpenseActivity extends AppCompatActivity {
             btn_date = findViewById(R.id.btndate);
             btn_back = findViewById(R.id.btnBack);
 
+            edt_date.setInputType(InputType.TYPE_NULL);
+            edt_money.setInputType(InputType.TYPE_CLASS_NUMBER);
             btn_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -107,12 +110,12 @@ public class Dat_AddExpenseActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     // Đặt lại màu nền của layout trước đó nếu có
                     if (previousSelectedLayout != null) {
-                        previousSelectedLayout.setBackgroundResource(R.drawable.dat_border_linear);  // Màu nền mặc định
+                        previousSelectedLayout.setBackgroundResource(R.drawable.dat_border_iconpink);  // Màu nền mặc định
                     }
 
                     // Lấy layout hiện tại và thay đổi màu nền
                     LinearLayout currentLayout = view.findViewById(R.id.ln_sub1);
-                    currentLayout.setBackgroundResource(R.drawable.dat_border_pink);  // Màu nền khi được chọn
+                    currentLayout.setBackgroundResource(R.drawable.dat_bg_light_pink);  // Màu nền khi được chọn
 
                     // Cập nhật biến lưu trữ layout đã chọn trước đó
                     previousSelectedLayout = currentLayout;
@@ -123,7 +126,7 @@ public class Dat_AddExpenseActivity extends AppCompatActivity {
                     userId = expenseSql.getUserId("dat");
 
                     // Hiển thị thông báo
-                    Toast.makeText(Dat_AddExpenseActivity.this, userId + " " + categoryId, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Dat_AddExpenseActivity.this, user.id_user + " " + categoryId, Toast.LENGTH_SHORT).show();
                 }
             });
 
