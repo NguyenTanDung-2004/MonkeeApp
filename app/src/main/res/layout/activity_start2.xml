@@ -6,7 +6,7 @@
     android:id="@+id/start2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
+    android:paddingHorizontal="20dp"
     tools:context=".Start_2_Activity">
 
     <LinearLayout
@@ -44,56 +44,54 @@
             tools:ignore="HardcodedText" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:id = "@+id/layout_viewpager">
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewpager"
-            android:layout_width="340dp"
-            android:layout_height="420dp"
-            android:background="@android:color/transparent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_viewpager">
-        </androidx.viewpager.widget.ViewPager>
-        <me.relex.circleindicator.CircleIndicator
-            android:id="@+id/circle_indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
+        <LinearLayout
+            android:id="@+id/layout_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
             android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            app:ci_drawable="@drawable/qa_shape"
-            app:ci_drawable_unselected="@drawable/qa_shapegrey"
-            app:ci_gravity="center_vertical|center_horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewpager">
+            android:orientation="vertical">
 
-        </me.relex.circleindicator.CircleIndicator>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="340dp"
+                android:layout_height="420dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_viewpager"></androidx.viewpager.widget.ViewPager>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonStart"
-            style="@style/QA_TextColor"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/qa_btn_background"
-            android:fontFamily="@font/baloo2semibold"
-            android:shadowDx="7"
-            android:shadowDy="7"
-            android:text="BẮT ĐẦu"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/circle_indicator"
-            tools:ignore="HardcodedText">
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/circle_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                app:ci_drawable="@drawable/qa_shape"
+                app:ci_drawable_unselected="@drawable/qa_shapegrey"
+                app:ci_gravity="center_vertical|center_horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewpager">
 
-        </androidx.appcompat.widget.AppCompatButton>
-    </LinearLayout>
+            </me.relex.circleindicator.CircleIndicator>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonStart"
+                style="@style/QA_TextColor"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="120dp"
+                android:background="@drawable/qa_btn_background"
+                android:fontFamily="@font/baloo2semibold"
+                android:shadowDx="7"
+                android:shadowDy="7"
+                android:text="BẮT ĐẦu"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="HardcodedText">
+
+            </androidx.appcompat.widget.AppCompatButton>
+        </LinearLayout>
 </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
