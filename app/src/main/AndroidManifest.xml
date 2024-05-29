@@ -45,12 +45,18 @@
         <activity
             android:name=".quen_mat_khau"
             android:exported="true" />
+        <activity android:name=".Dat_AddExpenseActivity"
+            android:exported="false" />
+        <activity android:name=".Dat_EditExpenseActivity"
+            android:exported="false" />
+        <activity android:name=".Dat_PieChartActivity"
+            android:exported="false" />
         <activity
             android:name=".Home"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="true" />
     </application>
 
 </manifest>

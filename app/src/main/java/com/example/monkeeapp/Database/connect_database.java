@@ -11,7 +11,7 @@ public class connect_database {
     protected static String serverName = "192.168.0.76:1433"; // định dạng là <ipv4>:<port>
     protected static String db = "MONKEE";
     protected static String user = "sa";
-    protected static String password = "12345";
+    protected static String password = "10102004";
     public static Connection connect;
     public void create_connect_database(){
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

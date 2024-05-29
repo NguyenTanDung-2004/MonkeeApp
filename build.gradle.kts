@@ -2,6 +2,10 @@ buildscript {
     dependencies {
         classpath(libs.google.services)
     }
+    repositories {
+        google()
+        mavenCentral() // Thêm dòng này nếu chưa có
+    }
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {

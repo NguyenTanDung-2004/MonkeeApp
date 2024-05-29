@@ -1,5 +1,6 @@
 package com.example.monkeeapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -15,11 +16,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.monkeeapp.User.user;
 import com.example.monkeeapp.databinding.ActivityMainBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private View view;
+    FloatingActionButton btnAddExpense;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +39,23 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new HomeFragment());
             else if (item.getItemId() == R.id.calendar)
                 replaceFragment(new CalendarFragment());
-//            else if (item.getItemId() == R.id.report)
-//                replaceFragment(new ReportFragment());
+            else if (item.getItemId() == R.id.report){
+                Intent intent = new Intent(MainActivity.this, Dat_PieChartActivity.class);
+                startActivity(intent);
+            }
             else if (item.getItemId() == R.id.setting)
                 replaceFragment(new UserFragment());
 
             return  true;
+        });
+
+        btnAddExpense = findViewById(R.id.btnAddExpense);
+        btnAddExpense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Dat_AddExpenseActivity.class);
+                startActivity(intent);
+            }
         });
     }
     private void replaceFragment(Fragment fragment) {
