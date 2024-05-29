@@ -8,15 +8,28 @@
     android:orientation="vertical"
     tools:context=".Dat_AddExpenseActivity">
 
-
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="THÊM GIAO DỊCH"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="37dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/dat_icon3" />
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="THÊM GIAO DỊCH"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="90dp"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class connect_database {
     String classes = "net.sourceforge.jtds.jdbc.Driver";
-    protected static String serverName = "192.168.0.100:1433"; // định dạng là <ipv4>:<port>
+    protected static String serverName = "10.43.186.65:1433"; // định dạng là <ipv4>:<port>
     protected static String db = "MONKEE";
     protected static String user = "sa";
     protected static String password = "10102004";

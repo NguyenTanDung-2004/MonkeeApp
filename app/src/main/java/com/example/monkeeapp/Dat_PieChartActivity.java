@@ -45,7 +45,7 @@ public class Dat_PieChartActivity extends AppCompatActivity {
     List<PieEntry> pieEntriesIncome = new ArrayList<>();
     ListView listViewRank, listViewRank2;
     TextView txtIncome, txtOutcome, txtTotal, txt_date;
-    ImageButton btnNextMonth, btnPreMonth;
+    ImageButton btnNextMonth, btnPreMonth, btnBack;
     int month, year;
 
     @Override
@@ -65,6 +65,15 @@ public class Dat_PieChartActivity extends AppCompatActivity {
         txtTotal = findViewById(R.id.txttotal);
         txt_date = findViewById(R.id.txtDate); // "Tháng 2/2024"
         String dateText = txt_date.getText().toString();
+
+        btnBack = findViewById(R.id.btnBack);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // Giả sử văn bản là "Tháng 2/2024"
         String[] parts = dateText.split(" ");

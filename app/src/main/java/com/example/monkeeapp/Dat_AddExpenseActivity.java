@@ -1,6 +1,7 @@
 package com.example.monkeeapp;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -48,7 +49,7 @@ public class Dat_AddExpenseActivity extends AppCompatActivity {
     MyArrayAdapter myArrayAdapter;
     LinearLayout previousSelectedLayout = null;
     Button btn_save,btn_thu, btn_chi;
-    ImageButton btn_date;
+    ImageButton btn_date, btn_back;
     ExpenseSql expenseSql;
     String choose, categoryId, userId;
     TextView txtTitle;
@@ -74,6 +75,14 @@ public class Dat_AddExpenseActivity extends AppCompatActivity {
             btn_thu = findViewById(R.id.btnThu);
             txtTitle = findViewById(R.id.txtTitle);
             btn_date = findViewById(R.id.btndate);
+            btn_back = findViewById(R.id.btnBack);
+
+            btn_back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
 
             btn_date.setOnClickListener(new View.OnClickListener() {
                 @Override
