@@ -8,34 +8,28 @@
     android:layout_height="match_parent"
     tools:context=".Start_1_Activity"
     android:padding="20dp">
-    <ImageView
-        android:id="@+id/imageLogo"
-        android:layout_width="267dp"
-        android:layout_height="261dp"
-        android:scaleType="fitXY"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
-    <TextView
-        android:id="@+id/textLogo"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="82dp"
-        android:layout_marginTop="188dp"
-        android:layout_marginEnd="82dp"
-        android:fontFamily="@font/ubuntubold"
-        android:text="monkee"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        style="@style/QA_TextColor"
-        app:layout_constraintEnd_toEndOf="@+id/imageLogo"
-        app:layout_constraintStart_toStartOf="@+id/imageLogo"
-        app:layout_constraintTop_toTopOf="@+id/imageLogo"
-        tools:ignore="HardcodedText"/>
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="visible"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/textLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ubuntubold"
+            android:text="monkee"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            style="@style/QA_TextColor"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
