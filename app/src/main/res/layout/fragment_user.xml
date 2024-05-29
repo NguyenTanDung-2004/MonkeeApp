@@ -12,23 +12,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginBottom="60dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="470dp"
-            android:layout_gravity="center">
+            android:layout_height="280dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/Setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="20dp"
                 android:fontFamily="@font/baloo2extrabold"
                 android:text="Cài đặt"
                 style="@style/QA_TextColor"
-                android:textSize="25sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/ava"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,53 +40,64 @@
 
             <ImageView
                 android:id="@+id/ava"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:scaleType="centerCrop"
-                android:layout_marginStart="130dp"
-                android:layout_marginEnd="130dp"
-                android:layout_marginTop="120dp"
+                android:layout_marginTop="10dp"
                 app:cardCornerRadius="120dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <EditText
-                android:id="@+id/name_text"
-                style="@style/QA_TextColor"
-                android:layout_width="230dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:gravity="center"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/qa_edit_text_background"
-                android:enabled="true"
-                android:fontFamily="@font/baloo2bold"
-                android:hint="Tên của bạn"
-                android:textAlignment="center"
-                android:textSize="22sp"
-                android:maxLength="18"
-                android:inputType="text"
-                android:singleLine="true"
+                android:paddingEnd="10dp"
+                android:paddingStart="30dp"
                 app:layout_constraintEnd_toEndOf="@+id/ava"
                 app:layout_constraintStart_toStartOf="@+id/ava"
                 app:layout_constraintTop_toBottomOf="@+id/ava">
 
-            </EditText>
+                <EditText
+                    android:id="@+id/name_text"
+                    style="@style/QA_TextColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/qa_edit_text_background"
+                    android:enabled="true"
+                    android:fontFamily="@font/baloo2bold"
+                    android:hint="Tên của bạn"
+                    android:inputType="text"
+                    android:maxLength="18"
+                    android:singleLine="true"
+                    android:layout_marginHorizontal="10dp"
+                    android:textAlignment="center"
+                    android:textSize="14sp"></EditText>
 
-            <ImageView
-                android:id="@+id/imgEdit"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/qa_edit"
-                app:layout_constraintStart_toEndOf="@+id/name_text"
-                app:layout_constraintTop_toBottomOf="@+id/ava"
-                tools:ignore="MissingConstraints">
-            </ImageView>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    app:layout_constraintStart_toEndOf="@+id/name_text">
+
+                    <ImageView
+                        android:id="@+id/imgEdit"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/qa_edit"
+                        tools:ignore="MissingConstraints">
+
+                    </ImageView>
+                </LinearLayout>
+
+
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_Change"
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/qa_btn_background"
@@ -93,189 +106,183 @@
                 android:shadowDy="7"
                 android:text="Cập nhật"
                 style="@style/QA_TextColor"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/name_text"
                 app:layout_constraintTop_toBottomOf="@+id/name_text"
                 app:layout_constraintEnd_toEndOf="@+id/name_text"
                 tools:ignore="HardcodedText" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            style="@style/QA_CardBackGround"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
-            android:id = "@+id/layout_account">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/QA_CardBackGround"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20sp"
+                android:id = "@+id/layout_account">
 
-            <ImageView
-                android:id="@+id/imageUser1"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="15dp"
-                android:src="@drawable/qa_user_account"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/imageUser1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="15dp"
+                    android:src="@drawable/qa_user_account"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/Account"
-                style="@style/QA_TextColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/baloo2semibold"
-                android:text="Tài khoản"
-                android:textSize="25sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageUser1"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="HardcodedText" />
+                <TextView
+                    android:id="@+id/Account"
+                    style="@style/QA_TextColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/baloo2semibold"
+                    android:text="Tài khoản"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageUser1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
 
-            <ImageView
-                android:id="@+id/imageNext"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginEnd="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.52"
-                style="@style/QA_IconNext" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/imageNext"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginEnd="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.52"
+                    style="@style/QA_IconNext" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
-            style="@style/QA_CardBackGround"
-            android:id = "@+id/layout_feedback">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                style="@style/QA_CardBackGround"
+                android:layout_marginBottom="20sp"
+                android:id = "@+id/layout_feedback">
 
-            <ImageView
-                android:id="@+id/imageFeedback"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="15dp"
-                android:src="@drawable/qa_user_feedback"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/imageFeedback"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="15dp"
+                    android:src="@drawable/qa_user_feedback"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/Feedback"
-                style="@style/QA_TextColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/baloo2semibold"
-                android:text="Ý kiến đóng góp"
-                android:textSize="25sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageFeedback"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="HardcodedText" />
+                <TextView
+                    android:id="@+id/Feedback"
+                    style="@style/QA_TextColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/baloo2semibold"
+                    android:text="Ý kiến đóng góp"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageFeedback"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
 
-            <ImageView
-                android:id="@+id/imageNext_1"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginEnd="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.52"
-                style="@style/QA_IconNext" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/imageNext_1"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginEnd="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.52"
+                    style="@style/QA_IconNext" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
-            style="@style/QA_CardBackGround"
-            android:id = "@+id/layout_contact">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                style="@style/QA_CardBackGround"
+                android:id = "@+id/layout_contact">
 
-            <ImageView
-                android:id="@+id/imageContact"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="15dp"
-                android:src="@drawable/qa_user_contact"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="4dp" />
+                <ImageView
+                    android:id="@+id/imageContact"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="15dp"
+                    android:src="@drawable/qa_user_contact"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="4dp" />
 
-            <TextView
-                android:id="@+id/Contact"
-                style="@style/QA_TextColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/baloo2semibold"
-                android:text="Thông tin liên hệ "
-                android:textSize="25sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageContact"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="HardcodedText" />
+                <TextView
+                    android:id="@+id/Contact"
+                    style="@style/QA_TextColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/baloo2semibold"
+                    android:text="Thông tin liên hệ "
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageContact"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
 
-            <ImageView
-                android:id="@+id/imageNext2"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginEnd="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.52"
-                style="@style/QA_IconNext" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/imageNext2"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginEnd="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.52"
+                    style="@style/QA_IconNext" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            style="@style/QA_ChPassBackGround"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/QA_ChPassBackGround"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp">
 
-            <ImageView
-                android:id="@+id/imageExit"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginStart="230dp"
-                android:src="@drawable/qa_exit"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/btnLogout"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="4dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/imageExit"
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/qa_exit"
+                        app:layout_constraintEnd_toStartOf="@id/btnLogout"
+                        app:layout_constraintTop_toTopOf="parent"/>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnLogout"
-                style="@style/QA_TextColor"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/baloo2bold"
-                android:shadowDx="7"
-                android:shadowDy="7"
-                android:text="Đăng xuất"
-                android:textSize="20sp"
-                android:textColor="@android:color/holo_red_light"
-                android:background="@android:color/transparent"
-                tools:ignore="HardcodedText"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnLogout"
+                        style="@style/QA_TextColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/baloo2bold"
+                        android:shadowDx="7"
+                        android:shadowDy="7"
+                        android:text="Đăng xuất"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/holo_red_light"
+                        android:background="@android:color/transparent"
+                        tools:ignore="HardcodedText"/>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>
