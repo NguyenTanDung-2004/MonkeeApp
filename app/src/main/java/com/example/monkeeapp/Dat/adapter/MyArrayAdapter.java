@@ -20,6 +20,14 @@ public class MyArrayAdapter extends ArrayAdapter<Type> {
     Activity context;
     int idLayout;
     ArrayList<Type> myList;
+    int position = 21;
+    public MyArrayAdapter(Activity context, int idLayout, ArrayList<Type> myList, int position) {
+        super(context, idLayout, myList);
+        this.context = context;
+        this.idLayout = idLayout;
+        this.myList = myList;
+        this.position = position;
+    }
     public MyArrayAdapter(Activity context, int idLayout, ArrayList<Type> myList) {
         super(context, idLayout, myList);
         this.context = context;
@@ -37,6 +45,11 @@ public class MyArrayAdapter extends ArrayAdapter<Type> {
         imageView.setImageResource(item.getImage());
         TextView textView = convertView.findViewById(R.id.txt_type);
         textView.setText(item.getType());
+        if (position != 21) {
+            if (position == this.position) {
+                convertView.setBackgroundResource(R.drawable.dat_bg_light_pink);
+            }
+        }
         return convertView;
     }
 }

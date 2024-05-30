@@ -78,7 +78,8 @@ public class Dat_AddExpenseActivity extends AppCompatActivity {
             btn_date = findViewById(R.id.btndate);
             btn_back = findViewById(R.id.btnBack);
 
-            edt_date.setInputType(InputType.TYPE_NULL);
+            edt_date.setFocusable(false);
+            edt_date.setEnabled(false);
             edt_money.setInputType(InputType.TYPE_CLASS_NUMBER);
             btn_back.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -123,10 +124,7 @@ public class Dat_AddExpenseActivity extends AppCompatActivity {
                     choose = name[position];
                     ExpenseSql expenseSql = new ExpenseSql();
                     categoryId = expenseSql.getCategoryId(choose);
-                    userId = expenseSql.getUserId("dat");
-
-                    // Hiển thị thông báo
-                    Toast.makeText(Dat_AddExpenseActivity.this, user.id_user + " " + categoryId, Toast.LENGTH_SHORT).show();
+                    userId = expenseSql.getUserId(user.id_user);
                 }
             });
 

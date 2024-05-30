@@ -1,6 +1,7 @@
 package com.example.monkeeapp;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -27,6 +28,7 @@ import com.example.monkeeapp.Dat.sql.ExpenseSql;
 import com.example.monkeeapp.Dat.util.Expense;
 import com.example.monkeeapp.Dat.util.Type;
 import com.example.monkeeapp.Database.connect_database;
+import com.example.monkeeapp.User.user;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -64,7 +66,6 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         try {
             edt_date = findViewById(R.id.edtDate);
             edt_note = findViewById(R.id.edit_note);
@@ -77,7 +78,49 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
             btn_date = findViewById(R.id.btndate);
 
             edt_money.setInputType(InputType.TYPE_CLASS_NUMBER);
-            edt_date.setInputType(InputType.TYPE_NULL);
+            edt_date.setFocusable(false);
+            edt_date.setEnabled(false);
+
+            Intent intent = getIntent();
+            String expenseId = intent.getStringExtra("expenseId");
+            String expenseDate = intent.getStringExtra("expenseDate");
+            String expenseNote = intent.getStringExtra("expenseNote");
+            String expenseMoney = intent.getStringExtra("expenseMoney");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+            SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                expenseDate = simpleDateFormat1.format(Objects.requireNonNull(simpleDateFormat.parse(expenseDate)));
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+            assert expenseMoney != null;
+            String[] type = expenseMoney.split(" ");
+            edt_date.setText(expenseDate);
+            edt_note.setText(expenseNote);
+            if (type[0].equals("THU")) {
+                btn_chi.setTextColor(getResources().getColor(R.color.black));
+                btn_chi.setBackgroundResource(R.drawable.dat_btn_change_white);
+                btn_thu.setTextColor(getResources().getColor(R.color.white));
+                btn_thu.setBackgroundResource(R.drawable.dat_btn_change_pink);
+                flag = 1;
+            } else {
+                btn_thu.setTextColor(getResources().getColor(R.color.black));
+                btn_thu.setBackgroundResource(R.drawable.dat_btn_add_expense);
+                btn_chi.setTextColor(getResources().getColor(R.color.white));
+                btn_chi.setBackgroundResource(R.drawable.dat_btn_square);
+                flag = 0;
+            }
+            String finalMoney = type[1];
+            // Phân tích chuỗi thành số
+            double parsed = Double.parseDouble(finalMoney);
+            // Định dạng số với dấu phân tách nhóm
+            DecimalFormat formatter = new DecimalFormat("#,###");
+            formatter.setDecimalFormatSymbols(new DecimalFormatSymbols() {{
+                setGroupingSeparator(' ');
+            }});
+            String formatted = formatter.format(parsed);
+            edt_money.setText(formatted);
+            edt_money.setSelection(formatted.length());
 
             btn_date.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -92,17 +135,28 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
                     finish();
                 }
             });
-            for (int i = 0; i < image.length; i++) {
-                myList.add(new Type(image[i], name[i]));
-            }
-            myArrayAdapter = new MyArrayAdapter(Dat_EditExpenseActivity.this, R.layout.dat_sub_activity, myList);
-            gv = findViewById(R.id.gv_expense);
-            gv.setAdapter(myArrayAdapter);
 
             // Khởi tạo kết nối cơ sở dữ liệu
             connect_database dbConnection = new connect_database();
             dbConnection.create_connect_database();
+            expenseSql = new ExpenseSql();
+            String categoryName = expenseSql.getCategoryName(expenseId);
+            int position = 0;
+            for (int i = 0; i < name.length; i++) {
+                if (name[i].equals(categoryName)) {
+                    position = i;
+                }
+            }
 
+            for (int i = 0; i < image.length; i++) {
+                myList.add(new Type(image[i], name[i]));
+            }
+            myArrayAdapter = new MyArrayAdapter(Dat_EditExpenseActivity.this, R.layout.dat_sub_activity, myList, position);
+            gv = findViewById(R.id.gv_expense);
+            gv.setAdapter(myArrayAdapter);
+
+
+            String finalExpenseDate = expenseDate;
             gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -121,10 +175,7 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
                     choose = name[position];
                     ExpenseSql expenseSql = new ExpenseSql();
                     categoryId = expenseSql.getCategoryId(choose);
-                    userId = expenseSql.getUserId("dat");
-
-                    // Hiển thị thông báo
-                    Toast.makeText(Dat_EditExpenseActivity.this, userId + " " + categoryId, Toast.LENGTH_SHORT).show();
+                    userId = expenseSql.getUserId(user.id_user);
                 }
             });
 
@@ -169,13 +220,12 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
                         expense.setNote(edt_note.getText().toString());
                         if (flag == 0) {
                             expense.setType("CHI");
-                        }
-                        else {
+                        } else {
                             expense.setType("THU");
                         }
                         try {
                             ExpenseSql expenseSql = new ExpenseSql();
-                            boolean result = expenseSql.update_expense("1", expense.getDate(), expense.getNote(), BigDecimal.valueOf(Long.parseLong(money)), expense.getType());
+                            boolean result = expenseSql.update_expense(expenseId, categoryId, expense.getDate(), expense.getNote(), BigDecimal.valueOf(Long.parseLong(money)), expense.getType());
                             if (result) {
                                 Toast.makeText(Dat_EditExpenseActivity.this, "Success", Toast.LENGTH_SHORT).show();
                             }
@@ -190,14 +240,13 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
 
             edt_money.addTextChangedListener(new TextWatcher() {
                 private String current = "";
+
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
                 }
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 }
 
                 @Override
@@ -228,7 +277,7 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
             });
         }
         catch (Exception e){
-            Toast.makeText(Dat_EditExpenseActivity.this, "Hãy điền đầy đủ các mục", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error: "+e, Toast.LENGTH_SHORT).show();
         }
     }
     private void openDialogDate(){
@@ -252,8 +301,6 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
                 }
                 edt_date.setText(dayString + "/" + monthString + "/" + year);
             }
-        },2024, 5, 31);
-
-        datePickerDialog.show();
+        },2024, 4, 31);
     }
 }
