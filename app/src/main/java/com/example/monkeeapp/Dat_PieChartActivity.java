@@ -18,6 +18,7 @@ import com.example.monkeeapp.Dat.adapter.ArrayAdapterListViewRank;
 import com.example.monkeeapp.Dat.sql.StatisticSql;
 import com.example.monkeeapp.Dat.util.StatisticItem;
 import com.example.monkeeapp.Dat.util.StatisticItemDisplay;
+import com.example.monkeeapp.User.user;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -162,8 +163,8 @@ public class Dat_PieChartActivity extends AppCompatActivity {
         connect_database connectDatabase = new connect_database();
         connectDatabase.create_connect_database();
         StatisticSql sql = new StatisticSql();
-        BigDecimal income = sql.getIncome("1", month, year);
-        BigDecimal outcome = sql.getOutcome("1", month, year);
+        BigDecimal income = sql.getIncome(user.id_user, month, year);
+        BigDecimal outcome = sql.getOutcome(user.id_user, month, year);
         if (income != null && outcome != null) {
             BigDecimal total = income.subtract(outcome);
             txtIncome.setText(String.valueOf(income.intValue()));

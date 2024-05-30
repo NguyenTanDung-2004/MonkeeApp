@@ -35,16 +35,17 @@ public class ExpenseSql {
         return false;
     }
 
-    public boolean update_expense(String expenseId, Date date, String note, BigDecimal money, String type) throws SQLException {
+    public boolean update_expense(String expenseId, String categoryId, Date date, String note, BigDecimal money, String type) throws SQLException {
         try {
-            String query = "update EXPENSE set Note=?, Money=?, Date=?, Type = ? where ExpenseID=?";
+            String query = "update EXPENSE set Note=?, Money=?, Date=?, Type = ?, CategoryID=? where ExpenseID=?";
             PreparedStatement preparedStatement = connect_database.connect.prepareStatement(query);
             // Thiết lập giá trị cho các tham số
             preparedStatement.setString(1, note);
             preparedStatement.setBigDecimal(2, money);
             preparedStatement.setDate(3, date);
             preparedStatement.setString(4, type);
-            preparedStatement.setString(5, expenseId);
+            preparedStatement.setString(5, categoryId);
+            preparedStatement.setString(6, expenseId);
             // Thực hiện truy vấn UPDATE
             int rowsAffected = preparedStatement.executeUpdate();
             if (rowsAffected > 0) {
@@ -71,14 +72,29 @@ public class ExpenseSql {
         return "Fail";
     }
 
-    public String getUserId(String email) {
-        String query = "select UserID from [USER] where Email=?";
+    public String getUserId(String id) {
+        String query = "select UserID from [USER] where UserID=?";
         try {
             PreparedStatement preparedStatement = connect_database.connect.prepareStatement(query);
-            preparedStatement.setString(1, email);
+            preparedStatement.setString(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return resultSet.getString("UserID");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return "Fail";
+    }
+
+    public String getCategoryName(String expenseId) {
+        String query = "select c.CategoryName from CATEGORY c, EXPENSE e where e.CategoryID = c.CategoryID and e.ExpenseID=?";
+        try {
+            PreparedStatement preparedStatement = connect_database.connect.prepareStatement(query);
+            preparedStatement.setString(1, expenseId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("CategoryName");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

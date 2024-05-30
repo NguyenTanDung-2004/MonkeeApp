@@ -1,6 +1,7 @@
 package com.example.monkeeapp.Giang.ExpenseAdapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.monkeeapp.Dat_EditExpenseActivity;
 import com.example.monkeeapp.Giang.ExpenseView.ExpenseView;
 import com.example.monkeeapp.R;
 
@@ -19,12 +21,17 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.Viewhold
 
     Context context;
     List<ExpenseView> dataList;
+    private OnItemClickListener listener;
     public ExpenseAdapter(List<ExpenseView> list) {this.dataList = list;}
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.giang_viewholder_expense, parent, false);
-        return new Viewholder(inflate);
+        return new Viewholder(inflate, listener);
     }
 
     @Override
@@ -43,6 +50,19 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.Viewhold
         if (dataList.get(position).getMoney().contains("-"))
             holder.money.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.Giang_green));
 
+        ExpenseView expenseView = dataList.get(position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, Dat_EditExpenseActivity.class);
+                intent.putExtra("expenseId", expenseView.getExpenseId());
+                intent.putExtra("expenseDate", expenseView.getDate());
+                intent.putExtra("expenseNote", expenseView.getNote());
+                intent.putExtra("expenseMoney", expenseView.getMoney());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -55,7 +75,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.Viewhold
     public static class Viewholder extends RecyclerView.ViewHolder {
         ImageView imgCategory;
         TextView name, date, note, money;
-        public Viewholder(@NonNull View itemView) {
+        public Viewholder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
 
             imgCategory = itemView.findViewById(R.id.imgCategory);
@@ -64,7 +84,21 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.Viewhold
             note = itemView.findViewById(R.id.txtNote);
             money = itemView.findViewById(R.id.txtMoney);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
+    }
 
+    public interface OnItemClickListener {
+        void onItemClick(int position);
     }
 }
