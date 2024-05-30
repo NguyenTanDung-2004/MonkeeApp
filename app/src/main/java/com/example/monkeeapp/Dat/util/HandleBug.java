@@ -3,6 +3,7 @@ package com.example.monkeeapp.Dat.util;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.monkeeapp.Giang.CustomCalendar.CustomCalendarView;
 import com.example.monkeeapp.Giang.ExpenseView.ExpenseView;
 import com.example.monkeeapp.HomeFragment;
 
@@ -15,6 +16,8 @@ public class HandleBug {
     public static TextView date;
     public static TextView description;
     public static HomeFragment homeFragment;
+    public static CustomCalendarView calendarView;
+    public static int flag = 0;
 
 
 }

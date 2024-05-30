@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.monkeeapp.Dat.util.HandleBug;
 import com.example.monkeeapp.Giang.ExpenseAdapter.ExpenseAdapter;
 import com.example.monkeeapp.Giang.ExpenseView.ExpenseView;
 import com.example.monkeeapp.Giang.interact_with_database.interact_with_expense;
@@ -39,7 +40,7 @@ public class CustomCalendarView extends LinearLayout {
     TextView currentDate;
     GridView gridView;
     GridAdapter gridAdapter;
-    TextView selectedDate;
+    public TextView selectedDate;
     RecyclerView rcvExpense;
     ExpenseAdapter expenseAdapter;
     TextView txtTongThu;
@@ -59,12 +60,14 @@ public class CustomCalendarView extends LinearLayout {
 
     public CustomCalendarView(Context context) {
         super(context);
+        HandleBug.calendarView = this;
     }
     public CustomCalendarView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
 
         InitializeLayout();
+        HandleBug.calendarView = this;
         setUpCalendar(-1);
         previousBtn.setOnClickListener(new OnClickListener() {
             @Override
@@ -101,7 +104,7 @@ public class CustomCalendarView extends LinearLayout {
 
     }
 
-    private void setUpCalendar(int pos) {
+    public void setUpCalendar(int pos) {
         String current_date = dateFormat.format(calendar.getTime());
         currentDate.setText(current_date);
         dates.clear();
@@ -148,7 +151,11 @@ public class CustomCalendarView extends LinearLayout {
         itemTouchHelper.attachToRecyclerView(rcvExpense);
     }
 
-    private void updateExpenseStatistics() {
+    public int getSelectedPosition() {
+        return gridAdapter.getSelectedPosition();
+    }
+
+    public void updateExpenseStatistics() {
         long thu = getTongThu(listExpensesForDate);
         long chi = getTongChi(listExpensesForDate);
         txtTongThu.setText(String.valueOf(thu));

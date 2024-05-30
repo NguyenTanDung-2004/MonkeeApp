@@ -159,6 +159,10 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
             gv.setAdapter(myArrayAdapter);
 
             myArrayAdapter.setSelectedPosition(position);
+            choose = name[position];
+            ExpenseSql expenseSql = new ExpenseSql();
+            categoryId = expenseSql.getCategoryId(choose);
+            userId = expenseSql.getUserId(user.id_user);
 
             String finalExpenseDate = expenseDate;
             gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -236,6 +240,10 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
                                 Toast.makeText(Dat_EditExpenseActivity.this, "Success", Toast.LENGTH_SHORT).show();
                                 HandleBug.homeFragment.updateAdapter();
                                 HandleBug.homeFragment.updateExpenseStatistic(user.id_user);
+                                if (HandleBug.flag == 1) {
+                                    HandleBug.calendarView.setUpCalendar(HandleBug.calendarView.getSelectedPosition());
+                                    HandleBug.calendarView.updateExpenseStatistics();
+                                }
                             }
                         } catch (SQLException e) {
                             Toast.makeText(Dat_EditExpenseActivity.this, "Fail", Toast.LENGTH_SHORT).show();
