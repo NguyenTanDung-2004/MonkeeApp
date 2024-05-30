@@ -124,7 +124,7 @@ public class HomeFragment extends Fragment {
     private String[] getExpenseMoney(String userId) {
         List<String> expenseMoneyList = new ArrayList<>();
         try {
-            String query = "SELECT CONCAT(e.Type, ' ', e.Money) AS Money " +
+            String query = "SELECT CONCAT(CASE WHEN e.Type = 'THU' THEN '+' ELSE '-' END, ' ', e.Money) AS Money " +
                     "FROM EXPENSE e " +
                     "WHERE e.UserID = ? AND e.Money <> 0";
 
