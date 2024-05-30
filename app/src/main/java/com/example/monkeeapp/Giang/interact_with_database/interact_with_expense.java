@@ -24,7 +24,7 @@ public class interact_with_expense {
     public static List<ExpenseView> getListExpenses(String userId) {
         List<ExpenseView> expenseList = new ArrayList<>();
         try {
-            String query = "SELECT e.ExpenseID, c.UrlIcon, c.CategoryName, e.Date, e.Note, CONCAT(e.Type, ' ', e.Money) AS Money " +
+            String query = "SELECT e.ExpenseID, c.UrlIcon, c.CategoryName, e.Date, e.Note, CONCAT(CASE WHEN e.Type = 'THU' THEN '+' ELSE '-' END, ' ', e.Money) AS Money " +
                     "FROM EXPENSE e " +
                     "JOIN CATEGORY c ON e.CategoryID = c.CategoryID " +
                     "WHERE e.UserID = ? AND e.Money <> 0";
@@ -48,7 +48,7 @@ public class interact_with_expense {
             }
 
         } catch (SQLException e) {
-//            e.printStackTrace();
+//        e.printStackTrace();
         }
 
         return expenseList;
@@ -56,7 +56,7 @@ public class interact_with_expense {
     public static List<ExpenseView> getListExpensesTop10(String userId) {
         List<ExpenseView> expenseList = new ArrayList<>();
         try {
-            String query = "SELECT TOP 10 e.ExpenseID, c.UrlIcon, c.CategoryName, e.Date, e.Note, CONCAT(e.Type, ' ', e.Money) AS Money " +
+            String query = "SELECT TOP 10 e.ExpenseID, c.UrlIcon, c.CategoryName, e.Date, e.Note, CONCAT(CASE WHEN e.Type = 'THU' THEN '+' ELSE '-' END, ' ', e.Money) AS Money " +
                     "FROM EXPENSE e " +
                     "JOIN CATEGORY c ON e.CategoryID = c.CategoryID " +
                     "WHERE e.UserID = ? AND e.Money <> 0" +
@@ -90,7 +90,7 @@ public class interact_with_expense {
     public static List<ExpenseView> expenseForMonth(String user_id, String month, String year) {
         List<ExpenseView> expenseList = new ArrayList<>();
         try {
-            String query = "SELECT  e.ExpenseID, c.UrlIcon, c.CategoryName, e.Date, e.Note, CONCAT(e.Type, ' ', e.Money) AS Money " +
+            String query = "SELECT  e.ExpenseID, c.UrlIcon, c.CategoryName, e.Date, e.Note, CONCAT(CASE WHEN e.Type = 'THU' THEN '+' ELSE '-' END, ' ', e.Money) AS Money " +
                     "FROM EXPENSE e " +
                     "JOIN CATEGORY c ON e.CategoryID = c.CategoryID " +
                     "WHERE e.UserID = ? AND MONTH(e.Date) = ? AND YEAR(e.Date) = ? AND e.Money <> 0" +
@@ -126,7 +126,7 @@ public class interact_with_expense {
     public static List<ExpenseView> getExpensesListForDate(String user_id, String date) {
         List<ExpenseView> expenseList = new ArrayList<>();
         try {
-            String query = "SELECT e.ExpenseID, c.UrlIcon, c.CategoryName, e.Date, e.Note, CONCAT(e.Type, ' ', e.Money) AS Money " +
+            String query = "SELECT e.ExpenseID, c.UrlIcon, c.CategoryName, e.Date, e.Note, CONCAT(CASE WHEN e.Type = 'THU' THEN '+' ELSE '-' END, ' ', e.Money) AS Money " +
                     "FROM EXPENSE e " +
                     "JOIN CATEGORY c ON e.CategoryID = c.CategoryID " +
                     "WHERE e.UserID = ? AND DAY(e.Date) = ? AND MONTH(e.Date) = ? AND YEAR(e.Date) = ? AND e.Money <> 0";

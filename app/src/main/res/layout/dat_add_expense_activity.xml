@@ -28,7 +28,7 @@
             android:text="THÊM GIAO DỊCH"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginLeft="90dp"/>
+            android:gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
@@ -167,7 +167,7 @@
     <GridView
         android:id="@+id/gv_expense"
         android:layout_width="wrap_content"
-        android:layout_height="350dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
