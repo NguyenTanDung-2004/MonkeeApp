@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.monkeeapp.Dat.util.HandleBug;
 import com.example.monkeeapp.User.user;
 import com.example.monkeeapp.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -37,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.home)
                 replaceFragment(new HomeFragment());
-            else if (item.getItemId() == R.id.calendar)
+            else if (item.getItemId() == R.id.calendar) {
                 replaceFragment(new CalendarFragment());
+                HandleBug.flag = 1;
+            }
             else if (item.getItemId() == R.id.report){
                 Intent intent = new Intent(MainActivity.this, Dat_PieChartActivity.class);
                 startActivity(intent);

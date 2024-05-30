@@ -26,6 +26,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.monkeeapp.Dat.adapter.MyArrayAdapter;
 import com.example.monkeeapp.Dat.sql.ExpenseSql;
 import com.example.monkeeapp.Dat.util.Expense;
+import com.example.monkeeapp.Dat.util.HandleBug;
 import com.example.monkeeapp.Dat.util.Type;
 import com.example.monkeeapp.Database.connect_database;
 import com.example.monkeeapp.User.user;
@@ -68,7 +69,6 @@ public class Dat_AddExpenseActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        try {
             edt_date = findViewById(R.id.edtDate);
             edt_note = findViewById(R.id.edit_note);
             edt_money = findViewById(R.id.edtMoney);
@@ -89,6 +89,18 @@ public class Dat_AddExpenseActivity extends AppCompatActivity {
                 }
             });
 
+            String date = "";
+            if (HandleBug.flag == 1) {
+                date = HandleBug.calendarView.selectedDate.getText().toString();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+                SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    date = simpleDateFormat1.format(Objects.requireNonNull(simpleDateFormat.parse(date)));
+                    edt_date.setText(date);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            }
             btn_date.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -178,6 +190,12 @@ public class Dat_AddExpenseActivity extends AppCompatActivity {
                             boolean result = expenseSql.add_expense(expense.getId(), userId, categoryId, expense.getDate(), expense.getNote(), BigDecimal.valueOf(Long.parseLong(money)), expense.getType());
                             if (result) {
                                 Toast.makeText(Dat_AddExpenseActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                HandleBug.homeFragment.updateAdapter();
+                                HandleBug.homeFragment.updateExpenseStatistic(user.id_user);
+                                if (HandleBug.flag == 1) {
+                                    HandleBug.calendarView.setUpCalendar(HandleBug.calendarView.getSelectedPosition());
+                                    HandleBug.calendarView.updateExpenseStatistics();
+                                }
                             }
                         } catch (SQLException e) {
                             Toast.makeText(Dat_AddExpenseActivity.this, "Fail", Toast.LENGTH_SHORT).show();
@@ -231,10 +249,7 @@ public class Dat_AddExpenseActivity extends AppCompatActivity {
                     }
                 }
             });
-        }
-        catch (Exception e){
-            Toast.makeText(Dat_AddExpenseActivity.this, "Hãy điền đầy đủ các mục", Toast.LENGTH_SHORT).show();
-        }
+
     }
     private void openDialogDate(){
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {

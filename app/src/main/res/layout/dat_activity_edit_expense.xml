@@ -64,8 +64,44 @@
         android:layout_marginRight="40dp"
         android:background="@drawable/dat_border_linear"
         android:padding="12dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:text="Tiền"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtMoney"
+            android:layout_width="93dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:hint="0"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="80dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="VND"
+            android:textSize="12dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/dat_border_linear"
+        android:padding="12dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -116,42 +152,6 @@
             android:hint="Chưa có"
             android:textSize="12dp"
             android:textStyle="bold" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/dat_border_linear"
-        android:padding="12dp"
-        android:layout_marginBottom="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            android:text="Tiền"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/edtMoney"
-            android:layout_width="93dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:hint="0"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:layout_marginLeft="80dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="VND"
-            android:textSize="12dp"
-            android:layout_weight="1"/>
     </LinearLayout>
 
     <TextView
