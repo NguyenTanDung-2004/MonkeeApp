@@ -97,7 +97,7 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
             String[] type = expenseMoney.split(" ");
             edt_date.setText(expenseDate);
             edt_note.setText(expenseNote);
-            if (type[0].equals("THU")) {
+            if (type[0].equals("+")) {
                 btn_chi.setTextColor(getResources().getColor(R.color.black));
                 btn_chi.setBackgroundResource(R.drawable.dat_btn_change_white);
                 btn_thu.setTextColor(getResources().getColor(R.color.white));
@@ -155,11 +155,13 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
             gv = findViewById(R.id.gv_expense);
             gv.setAdapter(myArrayAdapter);
 
+            myArrayAdapter.setSelectedPosition(position);
 
             String finalExpenseDate = expenseDate;
             gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    myArrayAdapter.setSelectedPosition(position);
                     // Đặt lại màu nền của layout trước đó nếu có
                     if (previousSelectedLayout != null) {
                         previousSelectedLayout.setBackgroundResource(R.drawable.dat_border_linear);  // Màu nền mặc định
@@ -301,6 +303,7 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
                 }
                 edt_date.setText(dayString + "/" + monthString + "/" + year);
             }
-        },2024, 4, 31);
+        },2024, Date.valueOf(String.valueOf(new Date(System.currentTimeMillis()))).getMonth(), Date.valueOf(String.valueOf(new Date(System.currentTimeMillis()))).getDate());
+        datePickerDialog.show();
     }
 }

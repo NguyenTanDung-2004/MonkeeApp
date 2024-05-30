@@ -52,4 +52,9 @@ public class MyArrayAdapter extends ArrayAdapter<Type> {
         }
         return convertView;
     }
+
+    public void setSelectedPosition(int position) {
+        this.position = position;
+        notifyDataSetChanged();
+    }
 }

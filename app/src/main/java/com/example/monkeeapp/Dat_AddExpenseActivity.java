@@ -1,6 +1,7 @@
 package com.example.monkeeapp;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -252,8 +253,7 @@ public class Dat_AddExpenseActivity extends AppCompatActivity {
                 }
                 edt_date.setText(dayString + "/" + monthString + "/" + year);
             }
-        },2024, 5, 31);
-
+        },2024, Date.valueOf(String.valueOf(new Date(System.currentTimeMillis()))).getMonth(), Date.valueOf(String.valueOf(new Date(System.currentTimeMillis()))).getDate());
         datePickerDialog.show();
     }
 }
