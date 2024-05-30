@@ -28,7 +28,6 @@ public class MyArrayAdapter extends ArrayAdapter<Type> {
         this.myList = myList;
         this.position = position;
     }
-
     public MyArrayAdapter(Activity context, int idLayout, ArrayList<Type> myList) {
         super(context, idLayout, myList);
         this.context = context;

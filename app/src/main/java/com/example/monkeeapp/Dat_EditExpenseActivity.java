@@ -51,7 +51,7 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
     MyArrayAdapter myArrayAdapter;
     LinearLayout previousSelectedLayout = null;
     Button btn_save,btn_thu, btn_chi;
-    ExpenseSql expenseSql = new ExpenseSql();
+    ExpenseSql expenseSql;
     String choose, categoryId, userId;
     TextView txtTitle;
     ImageButton btn_back, btn_date;
@@ -111,16 +111,16 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
                 flag = 0;
             }
             String finalMoney = type[1];
-                        // Phân tích chuỗi thành số
-                        double parsed = Double.parseDouble(finalMoney);
-                        // Định dạng số với dấu phân tách nhóm
-                        DecimalFormat formatter = new DecimalFormat("#,###");
-                        formatter.setDecimalFormatSymbols(new DecimalFormatSymbols() {{
-                            setGroupingSeparator(' ');
-                        }});
-                        String formatted = formatter.format(parsed);
-                        edt_money.setText(formatted);
-                        edt_money.setSelection(formatted.length());
+            // Phân tích chuỗi thành số
+            double parsed = Double.parseDouble(finalMoney);
+            // Định dạng số với dấu phân tách nhóm
+            DecimalFormat formatter = new DecimalFormat("#,###");
+            formatter.setDecimalFormatSymbols(new DecimalFormatSymbols() {{
+                setGroupingSeparator(' ');
+            }});
+            String formatted = formatter.format(parsed);
+            edt_money.setText(formatted);
+            edt_money.setSelection(formatted.length());
 
             btn_date.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -302,7 +302,5 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
                 edt_date.setText(dayString + "/" + monthString + "/" + year);
             }
         },2024, 4, 31);
-
-        datePickerDialog.show();
     }
 }
