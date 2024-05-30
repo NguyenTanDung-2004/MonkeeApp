@@ -101,4 +101,19 @@ public class ExpenseSql {
         }
         return "Fail";
     }
+
+    public String getImageUrl(String expenseId) {
+        String query = "select c.UrlIcon from CATEGORY c, EXPENSE e where e.CategoryID = c.CategoryID and e.ExpenseID=?";
+        try {
+            PreparedStatement preparedStatement = connect_database.connect.prepareStatement(query);
+            preparedStatement.setString(1, expenseId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("UrlIcon");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return "Fail";
+    }
 }
