@@ -205,7 +205,7 @@ public class Dat_PieChartActivity extends AppCompatActivity {
         // Ranking outcome
         // Get top 3 expense
         List<StatisticItemDisplay> statisticItemDisplays = new ArrayList<>();
-        List<StatisticItem> statisticOutcomeItems = sql.getTop3RankOutcome(month, year);
+        List<StatisticItem> statisticOutcomeItems = sql.getTop3RankOutcome(user.id_user, month, year);
         for (StatisticItem item : statisticOutcomeItems) {
             String type = sql.getType(item.getTitle());
             item.setTitle(type);
@@ -229,7 +229,7 @@ public class Dat_PieChartActivity extends AppCompatActivity {
         // Ranking income
         // Get top 3 income
         List<StatisticItemDisplay> statisticItemDisplays2 = new ArrayList<>();
-        List<StatisticItem> statisticIncomeItems = sql.getTop3RankIncome(month, year);
+        List<StatisticItem> statisticIncomeItems = sql.getTop3RankIncome(user.id_user, month, year);
         for (StatisticItem item : statisticIncomeItems) {
             String type = sql.getType(item.getTitle());
             item.setTitle(type);

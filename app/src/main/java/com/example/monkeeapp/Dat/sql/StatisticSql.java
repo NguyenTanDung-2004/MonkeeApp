@@ -49,13 +49,14 @@ public class StatisticSql {
             throw new RuntimeException(e);
         }
     }
-    public List<StatisticItem> getTop3RankOutcome(int month, int year){
-        String sql = "SELECT TOP 3 CategoryID,SUM(Money) AS TotalMoney FROM EXPENSE WHERE Type = ? and MONTH(Date) = ? and YEAR(Date) = ? GROUP BY CategoryID ORDER BY TotalMoney DESC";
+    public List<StatisticItem> getTop3RankOutcome(String userId, int month, int year){
+        String sql = "SELECT TOP 3 CategoryID,SUM(Money) AS TotalMoney FROM EXPENSE WHERE UserID = ? and Type = ? and MONTH(Date) = ? and YEAR(Date) = ? GROUP BY CategoryID ORDER BY TotalMoney DESC";
         try {
             PreparedStatement ps = connect_database.connect.prepareStatement(sql);
-            ps.setString(1, "CHI");
-            ps.setInt(2, month);
-            ps.setInt(3, year);
+            ps.setString(1, userId);
+            ps.setString(2, "CHI");
+            ps.setInt(3, month);
+            ps.setInt(4, year);
             ResultSet rs = ps.executeQuery();
             List<StatisticItem> list = new ArrayList<>();
             while (rs.next()){
@@ -68,13 +69,14 @@ public class StatisticSql {
         }
     }
 
-    public List<StatisticItem> getTop3RankIncome(int month, int year){
-        String sql = "SELECT TOP 3 CategoryID,SUM(Money) AS TotalMoney FROM EXPENSE WHERE Type = ? and MONTH(Date) = ? and YEAR(Date) = ? GROUP BY CategoryID ORDER BY TotalMoney DESC";
+    public List<StatisticItem> getTop3RankIncome(String userId, int month, int year){
+        String sql = "SELECT TOP 3 CategoryID,SUM(Money) AS TotalMoney FROM EXPENSE WHERE UserID = ? and Type = ? and MONTH(Date) = ? and YEAR(Date) = ? GROUP BY CategoryID ORDER BY TotalMoney DESC";
         try {
             PreparedStatement ps = connect_database.connect.prepareStatement(sql);
-            ps.setString(1, "THU");
-            ps.setInt(2, month);
-            ps.setInt(3, year);
+            ps.setString(1, userId);
+            ps.setString(2, "THU");
+            ps.setInt(3, month);
+            ps.setInt(4, year);
             ResultSet rs = ps.executeQuery();
             List<StatisticItem> list = new ArrayList<>();
             while (rs.next()){
