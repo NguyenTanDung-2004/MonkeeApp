@@ -26,6 +26,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.monkeeapp.Dat.adapter.MyArrayAdapter;
 import com.example.monkeeapp.Dat.sql.ExpenseSql;
 import com.example.monkeeapp.Dat.util.Expense;
+import com.example.monkeeapp.Dat.util.HandleBug;
 import com.example.monkeeapp.Dat.util.Type;
 import com.example.monkeeapp.Database.connect_database;
 import com.example.monkeeapp.User.user;
@@ -132,6 +133,8 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
             btn_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //Intent intent1 = new Intent(getActivity(), HomeFragment.class);
+                    //startActivity(intent1);
                     finish();
                 }
             });
@@ -220,6 +223,7 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
                         }
                         expense.setDate(Date.valueOf(date));
                         expense.setNote(edt_note.getText().toString());
+                        expense.setMoney(BigDecimal.valueOf(Long.parseLong(money)));
                         if (flag == 0) {
                             expense.setType("CHI");
                         } else {
@@ -230,6 +234,8 @@ public class Dat_EditExpenseActivity extends AppCompatActivity {
                             boolean result = expenseSql.update_expense(expenseId, categoryId, expense.getDate(), expense.getNote(), BigDecimal.valueOf(Long.parseLong(money)), expense.getType());
                             if (result) {
                                 Toast.makeText(Dat_EditExpenseActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                HandleBug.homeFragment.updateAdapter();
+                                HandleBug.homeFragment.updateExpenseStatistic(user.id_user);
                             }
                         } catch (SQLException e) {
                             Toast.makeText(Dat_EditExpenseActivity.this, "Fail", Toast.LENGTH_SHORT).show();

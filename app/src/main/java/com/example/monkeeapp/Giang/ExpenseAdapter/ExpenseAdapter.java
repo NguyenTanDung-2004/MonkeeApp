@@ -11,8 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.monkeeapp.Dat.util.HandleBug;
 import com.example.monkeeapp.Dat_EditExpenseActivity;
 import com.example.monkeeapp.Giang.ExpenseView.ExpenseView;
+import com.example.monkeeapp.HomeFragment;
 import com.example.monkeeapp.R;
 
 import java.util.List;
@@ -55,11 +57,17 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.Viewhold
             @Override
             public void onClick(View v) {
                 Context context = v.getContext();
+                HandleBug.expenseView = expenseView;
                 Intent intent = new Intent(context, Dat_EditExpenseActivity.class);
                 intent.putExtra("expenseId", expenseView.getExpenseId());
                 intent.putExtra("expenseDate", expenseView.getDate());
                 intent.putExtra("expenseNote", expenseView.getNote());
                 intent.putExtra("expenseMoney", expenseView.getMoney());
+                HandleBug.image = holder.imgCategory;
+                HandleBug.title = holder.name;
+                HandleBug.date = holder.date;
+                HandleBug.description = holder.note;
+                HandleBug.money = holder.money;
                 context.startActivity(intent);
             }
         });

@@ -182,6 +182,10 @@ public class Dat_AddExpenseActivity extends AppCompatActivity {
                         } catch (SQLException e) {
                             Toast.makeText(Dat_AddExpenseActivity.this, "Fail", Toast.LENGTH_SHORT).show();
                         }
+
+                        Intent intent = new Intent(Dat_AddExpenseActivity.this, HomeFragment.class);
+                        setResult(1, intent);
+                        finish();
                     }
                     catch (Exception e){
                         Toast.makeText(Dat_AddExpenseActivity.this, "Hãy điền đầy đủ các mục", Toast.LENGTH_SHORT).show();

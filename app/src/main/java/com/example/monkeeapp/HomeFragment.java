@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.monkeeapp.Dat.util.HandleBug;
 import com.example.monkeeapp.Database.QAnh.sql_for_setting.sql_for_setting;
 import com.example.monkeeapp.Database.connect_database;
 import com.example.monkeeapp.Giang.ExpenseAdapter.ExpenseAdapter;
@@ -67,16 +68,13 @@ public class HomeFragment extends Fragment {
         txtChi = view.findViewById(R.id.txtChi);
         ava = view.findViewById(R.id.imgAva);
 
-        RecyclerView rcvExpense = binding.rcvExpense;
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
-        rcvExpense.setLayoutManager(linearLayoutManager);
-
         connect_database obj = new connect_database();
         obj.create_connect_database();
         conn = obj.connect;
 
         setUsername(user.id_user);
         updateExpenseStatistic(user.id_user);
+
 
         String avaSQL = sql_for_setting.get_ava(user.id_user, conn);
         if (avaSQL != null && !avaSQL.isEmpty()) {
@@ -95,16 +93,13 @@ public class HomeFragment extends Fragment {
             ava.setImageResource(R.drawable.giang_custom_avatar);
         }
 
+        HandleBug.homeFragment = this;
+
 
         interact_with_expense interact = new interact_with_expense();
         listExpenses = interact_with_expense.getListExpensesTop10(user.id_user);
 
-        expenseAdapter = new ExpenseAdapter(listExpenses);
-        rcvExpense.setAdapter(expenseAdapter);
-
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
-        itemTouchHelper.attachToRecyclerView(rcvExpense);
-
+        updateAdapter();
         return view;
     }
 
@@ -123,8 +118,8 @@ public class HomeFragment extends Fragment {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-         if (!username.equals(""))
-             txtHello.setText("Xin chào, " + username);
+        if (!username.equals(""))
+            txtHello.setText("Xin chào, " + username);
     }
     private String[] getExpenseMoney(String userId) {
         List<String> expenseMoneyList = new ArrayList<>();
@@ -174,7 +169,7 @@ public class HomeFragment extends Fragment {
         }
         return sum;
     }
-    private void updateExpenseStatistic(String userId) {
+    public void updateExpenseStatistic(String userId) {
         long thu = getTongThu(userId);
         long chi = getTongChi(userId);
         txtThu.setText(String.valueOf(thu));
@@ -185,6 +180,19 @@ public class HomeFragment extends Fragment {
         } else {
             txtTotalMoney.setText("-" + String.valueOf(chi - thu));
         }
+
+
+    }
+    public void updateAdapter() {
+        interact_with_expense interact = new interact_with_expense();
+        listExpenses = interact_with_expense.getListExpensesTop10(user.id_user);
+        RecyclerView rcvExpense = binding.rcvExpense;
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
+        rcvExpense.setLayoutManager(linearLayoutManager);
+        expenseAdapter = new ExpenseAdapter(listExpenses);
+        rcvExpense.setAdapter(expenseAdapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(rcvExpense);
     }
     // vuot de xoa expense
     ExpenseView deleteExpense;
