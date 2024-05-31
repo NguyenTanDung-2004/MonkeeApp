@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".quen_mat_khau">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="70px">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200px">
+            <ImageView
+                android:layout_width="500px"
+                android:layout_height="500px"
+                android:layout_centerInParent="true"
+                android:src="@drawable/logo"
+                ></ImageView>
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="70px"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow"
+                android:layout_marginTop="40px"
+                android:layout_marginLeft="20px"></ImageView>
+        </RelativeLayout>
+        <com.example.monkeeapp.Dung.custom_textview.Baloo2_textView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quên mật khẩu?"
+            android:textSize="90px"
+            android:textColor="@color/black"
+            android:paddingLeft="30px"
+            ></com.example.monkeeapp.Dung.custom_textview.Baloo2_textView>
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="500px"
+            android:id="@+id/viewpager"></androidx.viewpager.widget.ViewPager>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_dangky"
+            ></RelativeLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

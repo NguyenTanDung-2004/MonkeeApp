@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="500px"
+    android:paddingLeft="30px"
+    android:paddingRight="30px"
+    android:paddingTop="50px"
+    android:orientation="vertical">
+    <com.example.monkeeapp.Dung.custom_textview.Baloo2_textView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="80px"
+        android:textSize="35px"
+        android:textColor="@color/Dung_textColor_input"
+        android:text="Để chắc chắn, bạn hãy nhập lại mật khẩu mới vào đây."></com.example.monkeeapp.Dung.custom_textview.Baloo2_textView>
+
+    <RelativeLayout
+        android:id="@+id/div_input_email"
+        android:layout_width="match_parent"
+        android:layout_height="125px"
+        android:layout_marginTop="50px">
+
+        <com.example.monkeeapp.Dung.custom_editText.custom_EditText
+            android:id="@+id/input_new_password"
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:background="@drawable/dung_shape_input"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="Xác nhận mật khẩu:"
+            android:inputType="textPassword"
+            android:paddingLeft="80px"
+            android:paddingRight="80px"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/Dung_textColor_input"
+            android:textFontWeight="300"></com.example.monkeeapp.Dung.custom_editText.custom_EditText>
+
+        <ImageView
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="30px"
+            android:src="@drawable/password"></ImageView>
+        <ImageView
+            android:id="@+id/hide"
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30px"
+            android:layout_marginRight="52px"
+            android:src="@drawable/hide"
+
+            ></ImageView>
+    </RelativeLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/tieptuc"
+        android:layout_width="match_parent"
+        android:layout_height="125px"
+        android:background="@drawable/dung_shape_button_danhnhap"
+        android:text="Tiếp tục"
+        android:textColor="@color/black"
+        android:textSize="30px"></androidx.appcompat.widget.AppCompatButton>
+
+</LinearLayout>

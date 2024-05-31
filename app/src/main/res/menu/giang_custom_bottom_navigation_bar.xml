@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/home"
+        android:title="Nhà"
+        android:icon="@drawable/icon_home"/>
+
+    <item android:id="@+id/calendar"
+        android:title="Lịch"
+        android:icon="@drawable/icon_calendar" />
+
+    <item android:id="@+id/add"
+        android:title=""
+        android:enabled="false"/>
+
+    <item android:id="@+id/report"
+        android:title="Báo cáo"
+        android:icon="@drawable/icon_chart" />
+
+    <item android:id="@+id/setting"
+        android:title="Cài đặt"
+        android:icon="@drawable/icon_setting" />
+</menu>

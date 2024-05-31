@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="oval" android:innerRadius="150dp">
+            <solid android:color="#e3e7fa" />
+        </shape>
+    </item>
+
+    <item>
+        <bitmap
+            android:src="@drawable/qa_contact"
+            android:gravity="center"
+            android:scaleType="fitCenter" />
+    </item>
+
+</layer-list>

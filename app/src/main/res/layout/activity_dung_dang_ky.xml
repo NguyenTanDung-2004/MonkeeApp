@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".login">
+    <!--edit logo-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginTop="50px"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="400px"
+            android:layout_height="400px"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo"></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30px"
+            android:text="monkee"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:textStyle="bold"></TextView>
+    </RelativeLayout>
+    <!--edit hai thẻ input-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="600px"
+        android:layout_marginTop="30px"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/div_input_email"
+            android:layout_width="match_parent"
+            android:layout_height="125px">
+
+            <com.example.monkeeapp.Dung.custom_editText.custom_EditText
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                android:background="@drawable/dung_shape_input"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="Email của bạn:"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="80px"
+                android:paddingRight="80px"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/Dung_textColor_input"
+                android:textFontWeight="300"></com.example.monkeeapp.Dung.custom_editText.custom_EditText>
+
+            <ImageView
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_marginLeft="50px"
+                android:layout_marginTop="30px"
+                android:src="@drawable/user"></ImageView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/div_input_password"
+            android:layout_width="match_parent"
+            android:layout_height="125px"
+            android:layout_marginTop="20px">
+
+            <com.example.monkeeapp.Dung.custom_editText.custom_EditText
+                android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                android:background="@drawable/dung_shape_input"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="Mật Khẩu của bạn:"
+                android:inputType="textPassword"
+                android:paddingLeft="80px"
+
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/Dung_textColor_input"></com.example.monkeeapp.Dung.custom_editText.custom_EditText>
+
+            <ImageView
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_marginLeft="52px"
+                android:layout_marginTop="30px"
+                android:src="@drawable/password"
+
+                ></ImageView>
+
+            <ImageView
+                android:id="@+id/hide"
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="30px"
+                android:layout_marginRight="52px"
+                android:src="@drawable/hide"
+
+                ></ImageView>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/div_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="125px"
+            android:layout_marginTop="20px">
+
+            <com.example.monkeeapp.Dung.custom_editText.custom_EditText
+                android:id="@+id/input_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                android:background="@drawable/dung_shape_input"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="Xác nhận mật khẩu:"
+                android:inputType="textPassword"
+                android:paddingLeft="80px"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/Dung_textColor_input"></com.example.monkeeapp.Dung.custom_editText.custom_EditText>
+
+            <ImageView
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_marginLeft="52px"
+                android:layout_marginTop="30px"
+                android:src="@drawable/password"
+
+                ></ImageView>
+
+            <ImageView
+                android:id="@+id/hide1"
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="30px"
+                android:layout_marginRight="52px"
+                android:src="@drawable/hide"
+
+                ></ImageView>
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/dangky"
+            android:layout_width="match_parent"
+            android:layout_height="125px"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="30px"
+            android:layout_marginRight="30px"
+            android:background="@drawable/dung_shape_button_danhnhap"
+            android:text="Đăng Ký"
+            android:textColor="@color/black"
+            android:textSize="30px"></androidx.appcompat.widget.AppCompatButton>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="220px"
+        android:orientation="vertical"
+        android:paddingTop="40px">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10px"
+            android:orientation="horizontal">
+
+            <com.example.monkeeapp.Dung.custom_textview.Baloo2_regular
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bạn đã có tài khoản?"
+                android:textSize="30px"></com.example.monkeeapp.Dung.custom_textview.Baloo2_regular>
+
+            <com.example.monkeeapp.Dung.custom_textview.Baloo2_textView
+                android:id="@+id/dang_ky_ngay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Quay lại đăng nhập"
+                android:textColor="@color/Dung_buttonColor"
+                android:textSize="30px"></com.example.monkeeapp.Dung.custom_textview.Baloo2_textView>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

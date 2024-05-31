@@ -1,9 +1,45 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MonkeeApp" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.Theme.MonkeeApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
+    <style name="animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+    <style name="QA_ScreenBackGround">
+        <item name ="android:background">@color/white</item>
+    </style>
+    <style name="QA_ScreenBackGroundTint" parent="Widget.MaterialComponents.BottomAppBar">
+        <item name="android:layout_marginStart">-8dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="QA_CardBackGround">
+        <item name="android:background">@drawable/qa_fragment</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+    <style name="QA_ChPassBackGround">
+        <item name="android:background">@drawable/qa_ch_pass</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
+    <style name="QA_IconReturnBackground">
+        <item name="android:background">@drawable/qa_back</item>
+    </style>
+    <style name="QA_IconPassLock">
+        <item name="android:background">@drawable/qa_lock</item>
+    </style>
+    <style name="QA_IconPassEye">
+        <item name="android:background">@drawable/hide</item>
+    </style>
+    <style name="QA_IconNext">
+        <item name="android:background">@drawable/qa_next</item>
+    </style>
+
+    <style name="QA_TextColor"><item name ="android:textColor">@color/black</item></style>
+    <style name="QA_MinorTextColor"><item name ="android:textColor">@color/QA_grey</item></style>
 
     <style name="Theme.MonkeeApp" parent="Base.Theme.MonkeeApp" />
 </resources>

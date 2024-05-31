@@ -23,8 +23,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.monkeeapp.Database.Dung.SQL_DangKy.sql_dangky;
+import com.example.monkeeapp.Database.Dung.SQL_DangNhap.sql_dangnhap;
+
+import com.example.monkeeapp.Database.connect_database;
 import com.example.monkeeapp.Dung.Event_for_login.event_for_login;
 import com.example.monkeeapp.Dung.User.user;
+import com.example.monkeeapp.Dung.utils.encrypt_password;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -39,6 +44,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 
 public class login extends AppCompatActivity {
@@ -48,6 +54,7 @@ public class login extends AppCompatActivity {
     FirebaseDatabase database;
     GoogleSignInClient googlesigninClient;
     int RC_google_signin = 20;
+    public static String email_google;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +65,8 @@ public class login extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        connect_database obj = new connect_database();
+        obj.create_connect_database();
         event_for_input(this);
         event_for_eye(this);
         event_for_QuenMatKhau(this);
@@ -144,8 +153,19 @@ public class login extends AppCompatActivity {
                             map.put("profile", user.getPhotoUrl().toString());
                             map.put("gamil", user.getEmail());
                             database.getReference().child("user").child(user.getUid()).setValue(map);
-                            com.example.monkeeapp.Dung.User.user.email = user.getEmail();
-                            Intent intent = new Intent(login.this, Home.class);
+                            email_google = user.getEmail();
+                            try {
+                                if (sql_dangky.check_email_exist(email_google) == false){
+                                    com.example.monkeeapp.User.user.id_user = sql_dangnhap.get_id_from_email(email_google);
+                                }
+                                else{
+                                    sql_dangky.insert_user(email_google, user.getDisplayName(), encrypt_password.encryptToSHA1("123123asdfasdfasd@"));
+                                    com.example.monkeeapp.User.user.id_user = sql_dangnhap.get_id_from_email(email_google);
+                                }
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
+                            }
+                            Intent intent = new Intent(login.this, MainActivity.class);
                             startActivity(intent);
                             TextView obj = findViewById(R.id.text_continue);
                             obj.setText("Đăng nhập bằng Google");
