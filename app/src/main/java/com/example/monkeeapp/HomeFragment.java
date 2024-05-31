@@ -103,7 +103,7 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private void setUsername(String userId) {
+    public void setUsername(String userId) {
         String username = "";
         try {
             String query = "SELECT Username FROM [USER] WHERE UserID = ?";
@@ -121,7 +121,7 @@ public class HomeFragment extends Fragment {
         if (!username.equals(""))
             txtHello.setText("Xin chào, " + username);
     }
-    private String[] getExpenseMoney(String userId) {
+    public String[] getExpenseMoney(String userId) {
         List<String> expenseMoneyList = new ArrayList<>();
         try {
             String query = "SELECT CONCAT(CASE WHEN e.Type = 'THU' THEN '+' ELSE '-' END, ' ', e.Money) AS Money " +
@@ -149,7 +149,7 @@ public class HomeFragment extends Fragment {
         expenseMoneyArray = expenseMoneyList.toArray(expenseMoneyArray);
         return expenseMoneyArray;
     }
-    private long getTongThu(String user_id) {
+    public long getTongThu(String user_id) {
         String[] list = getExpenseMoney(user_id);
 
         long sum = 0;
@@ -159,7 +159,7 @@ public class HomeFragment extends Fragment {
         }
         return sum;
     }
-    private long getTongChi(String user_id) {
+    public long getTongChi(String user_id) {
         String[] list = getExpenseMoney(user_id);
 
         long sum = 0;
@@ -180,8 +180,6 @@ public class HomeFragment extends Fragment {
         } else {
             txtTotalMoney.setText("-" + String.valueOf(chi - thu));
         }
-
-
     }
     public void updateAdapter() {
         interact_with_expense interact = new interact_with_expense();

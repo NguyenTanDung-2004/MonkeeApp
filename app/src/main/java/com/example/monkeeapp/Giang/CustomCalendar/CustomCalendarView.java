@@ -89,7 +89,7 @@ public class CustomCalendarView extends LinearLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    private void InitializeLayout() {
+    public void InitializeLayout() {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.giang_calendar_layout, this);
         nextBtn = view.findViewById(R.id.nextBtn);
