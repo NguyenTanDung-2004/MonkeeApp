@@ -100,6 +100,10 @@ public class Dat_AddExpenseActivity extends AppCompatActivity {
                 } catch (ParseException e) {
                     throw new RuntimeException(e);
                 }
+            } else {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String currentdate = simpleDateFormat.format(new Date(System.currentTimeMillis()));
+                edt_date.setText(currentdate);
             }
             btn_date.setOnClickListener(new View.OnClickListener() {
                 @Override

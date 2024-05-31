@@ -56,11 +56,11 @@ public class interact_with_expense {
     public static List<ExpenseView> getListExpensesTop10(String userId) {
         List<ExpenseView> expenseList = new ArrayList<>();
         try {
-            String query = "SELECT TOP 10 e.ExpenseID, c.UrlIcon, c.CategoryName, e.Date, e.Note, CONCAT(CASE WHEN e.Type = 'THU' THEN '+' ELSE '-' END, ' ', e.Money) AS Money " +
+            String query = "SELECT e.ExpenseID, c.UrlIcon, c.CategoryName, e.Date, e.Note, CONCAT(CASE WHEN e.Type = 'THU' THEN '+' ELSE '-' END, ' ', e.Money) AS Money " +
                     "FROM EXPENSE e " +
                     "JOIN CATEGORY c ON e.CategoryID = c.CategoryID " +
                     "WHERE e.UserID = ? AND e.Money <> 0" +
-                    "ORDER BY e.Date asc";
+                    "ORDER BY e.Date desc";
 
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setString(1, userId);

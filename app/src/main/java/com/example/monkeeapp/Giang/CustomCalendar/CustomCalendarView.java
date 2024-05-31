@@ -212,7 +212,7 @@ public class CustomCalendarView extends LinearLayout {
             updateExpenseStatistics();
             // goi setUpCalendar để thay đổi dữ liệu trng ô gridView
             setUpCalendar(gridAdapter.getSelectedPosition());
-
+            getSelectedPosition();
             String deleteString = "Đã xóa một chi tiêu";
             Snackbar.make(view, deleteString, Snackbar.LENGTH_LONG).setAction("Hoàn tác", new View.OnClickListener() {
                 @Override
@@ -221,6 +221,7 @@ public class CustomCalendarView extends LinearLayout {
                     interact_with_expense.restoreExpense(id, temp);
                     expenseAdapter.notifyDataSetChanged();
                     updateExpenseStatistics();
+                    getSelectedPosition();
                     setUpCalendar(gridAdapter.getSelectedPosition());
                 }
             }).show();
